@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -43,4 +45,37 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/getinfo")
+	public String getInfo() {
+		return "getinfo";
+	}
+	
+	@RequestMapping("/info")
+	public String doInfo(HttpServletRequest hsr, Model model) {
+		String uid=hsr.getParameter("userid");
+		String addr=hsr.getParameter("address");
+		System.out.println("uid="+uid);
+		System.out.println("addr="+addr);
+		model.addAttribute("loginid",uid);
+		model.addAttribute("region",addr);
+		// userid -> uid -> loginid, address->addr->region
+		return "viewinfo";
+	}
+	
+	@RequestMapping("/choose")
+	public String doChoose() {
+		return "choose";
+	}
+	
+	@RequestMapping("/selected")
+	public String doJob(HttpServletRequest hsr,Model model) {
+		String strPath=hsr.getParameter("path");
+		if(strPath.equals("Login")) {
+			return "getinfo";
+		} else if(strPath.equals("newbie")) {
+			return "newbie";
+		} else {
+			return "choose";
+		}
+	}
 }
