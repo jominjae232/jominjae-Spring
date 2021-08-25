@@ -22,6 +22,11 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	@RequestMapping(value = "/b", method = RequestMethod.GET)
+	public String home1(Locale locale, Model m) {
+		m.addAttribute("m_name","Jenny,Jisoo");
+		return "members";
+	}
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
