@@ -10,8 +10,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Handles requests for the application home page.
@@ -24,6 +27,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	/*
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home1(Locale locale, Model m) {
 		m.addAttribute("m_name","Jenny,Jisoo");
@@ -50,18 +54,37 @@ public class HomeController {
 		return "getinfo";
 	}
 	
+	// ../info?userid=xaexal&address=Cheonan
+	// ../info/xaexal/Cheonan
 	@RequestMapping("/info")
-	public String doInfo(HttpServletRequest hsr, Model model) {
-		String uid=hsr.getParameter("userid");
-		String addr=hsr.getParameter("address");
-		System.out.println("uid="+uid);
-		System.out.println("addr="+addr);
-		model.addAttribute("loginid",uid);
-		model.addAttribute("region",addr);
-		// userid -> uid -> loginid, address->addr->region
-		return "viewinfo";
-	}
+//	public String doInfo(HttpServletRequest hsr, Model model) {
+//		String uid=hsr.getParameter("userid");
+//		String addr=hsr.getParameter("address");
+//		String n=hsr.getParameter("income");
+//		int salary=Integer.parseInt(n);
+	public String doInfo(@RequestParam("userid") String uid,
+						 @RequestParam("address") String addr,
+						 @RequestParam("income") int salary,
+						 Model model) {
+	System.out.println("uid="+uid);
+	System.out.println("addr="+addr);
+	model.addAttribute("loginid",uid);
+	model.addAttribute("region",addr);
 	
+	// userid -> uid -> loginid, address->addr->region
+			return "viewinfo";
+	}
+	*/
+	//Command객체
+	public String doInfo(@ModelAttribute("pl") ParamList pl,Model model) {
+		System.out.println("uid="+pl.userid);
+		System.out.println("addr="+pl.address);
+//		model.addAttribute("loginid",pl.userid);
+//		model.addAttribute("region",pl.address);
+		// userid -> uid -> loginid, address->addr->region
+		return "viewInfo";
+	}
+		
 	@RequestMapping("/choose")
 	public String doChoose() {
 		return "choose";
@@ -69,13 +92,29 @@ public class HomeController {
 	
 	@RequestMapping("/selected")
 	public String doJob(HttpServletRequest hsr,Model model) {
-		String strPath=hsr.getParameter("path");
+//	public String doJob(@RequestParam("Login") String Login,@RequestParam("newbie")String newbie,strPath strPath,Model model) {
+	String strPath=hsr.getParameter("path");
 		if(strPath.equals("Login")) {
 			return "getinfo";
 		} else if(strPath.equals("newbie")) {
 			return "newbie";
 		} else {
-			return "choose";
+			return "redirect:choose"; //redirect:요청경로명
 		}
 	}
+	
+	//*/
+	@RequestMapping("/today/{address}/{userid}")
+	public String showNumber(@PathVariable String address,@PathVariable String userid,Model model) {
+		model.addAttribute("addr",address);
+		model.addAttribute("uid",userid);
+		if(userid.equals("xaexal")) {
+			return "today";
+		} else {
+			return "redirect:/choose";
+		}
+	}
+	
+	
+	
 }

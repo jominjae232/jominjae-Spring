@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Infomation</title>
+<title>회원</title>
 </head>
 <body>
-<p>${pl.userid}</p>
-<p>${pl.address}</p>
+<p>유저아이디: ${userid}</p><br>
+<button onclick="location.href='home'">돌아가기</button>
 </body>
 </html>

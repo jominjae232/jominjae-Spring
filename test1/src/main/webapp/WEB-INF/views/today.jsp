@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Infomation</title>
+<title>Today</title>
 </head>
 <body>
-<p>${pl.userid}</p>
-<p>${pl.address}</p>
+<p>userid: ${uid}</p>
+<p>address: ${addr}</p>
 </body>
 </html>
