@@ -27,7 +27,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	/*
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home1(Locale locale, Model m) {
 		m.addAttribute("m_name","Jenny,Jisoo");
@@ -74,7 +74,7 @@ public class HomeController {
 	// userid -> uid -> loginid, address->addr->region
 			return "viewinfo";
 	}
-	*/
+	
 	//Command객체
 	public String doInfo(@ModelAttribute("pl") ParamList pl,Model model) {
 		System.out.println("uid="+pl.userid);
@@ -103,7 +103,6 @@ public class HomeController {
 		}
 	}
 	
-	//*/
 	@RequestMapping("/today/{address}/{userid}")
 	public String showNumber(@PathVariable String address,@PathVariable String userid,Model model) {
 		model.addAttribute("addr",address);

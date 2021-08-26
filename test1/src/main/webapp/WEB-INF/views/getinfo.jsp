@@ -6,11 +6,45 @@
 <meta charset="UTF-8">
 <title>Get Info</title>
 </head>
+<style>
+td {
+width: 50px;
+height: 50px;
+}
+</style>
 <body>
-<form method="get" action="/app/info">
-	USERID: <input type="text" name=userid><br>
-	ADDRESS: <input type="text" name=address><br>
-	<input type="submit" value="전송">
-</form>
+<table border=1>
+<%--Scriptlet, Servlet    App --%>
+<%
+	int k=1;
+	for(int i=0; i<5; i++) {
+		out.println("<tr>");
+		for(int j=0; j<4; j++) {
+			out.println("<td align=center>"+k+"</td>");
+			k++;
+		}
+		out.println("</tr>");
+	}
+%>
+
+
+
+<%! int k=1; %>
+<%
+	for(int i=0; i<5; i++) {
+%>
+<tr>
+<%
+		for(int j=0; j<4; j++) {
+%>
+<td align=center><%=k %></td>
+<%			
+			k++;
+		}
+		out.println("</tr>");
+	}
+%>
+</table>
 </body>
+<script></script>
 </html>
