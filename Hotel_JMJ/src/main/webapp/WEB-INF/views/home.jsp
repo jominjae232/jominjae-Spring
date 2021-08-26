@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>선택</title>
+<title>홈페이지</title>
 </head>
 <body>
 <a href='selected?path=Login'>로그인하기</a>&nbsp;&nbsp;
