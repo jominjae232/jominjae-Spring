@@ -7,7 +7,8 @@
 <title>회원</title>
 </head>
 <body>
-<p>유저아이디: ${userid}</p><br>
+<p>로긴아이디: ${userid}</p>
+<p>비밀번호: ${password1}</p><br>
 <button onclick="location.href='home'">돌아가기</button>
 </body>
 </html>

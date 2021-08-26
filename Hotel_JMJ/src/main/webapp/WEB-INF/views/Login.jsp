@@ -12,5 +12,6 @@
 	비밀번호: <input type="password" name=password1><br>
 	<button onclick="location.href='viewinfo'" style="background-color: green;">확인</button>
 </form>
+<button onclick="location.href='home'" style="background-color: red;">취소</button>
 </body>
 </html>

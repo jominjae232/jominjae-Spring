@@ -7,10 +7,9 @@
 <title>회원</title>
 </head>
 <body>
-<p>유저이름: ${username}</p>
-<p>유저아이디: ${userid}</p>
-<p>유저 비밀번호${password1}</p>
-<p>유저 비밀번호 확인:${password2}</p>
+<p>이름: ${username}</p>
+<p>로긴아이디: ${userid}</p>
+<p>비밀번호: ${password1}</p>
 <p>모바일: ${mobile}</p>
 <button onclick="location.href='home'">돌아가기</button>
 </body>
