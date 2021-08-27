@@ -48,7 +48,7 @@
                     <ul class="util clear">
                     	<button onclick="location.href='booking'">예약관리</button>
                     	<button onclick="location.href='room'" style="color: blue;">객실관리</button>
-                    	<button onclick="location.href='home'" style="color: blue;">로그아웃</button>
+                    	<button onclick="location.href='logout'" style="color: blue;">로그아웃</button>
                     </ul>
 				</div>
 				

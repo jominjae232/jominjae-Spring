@@ -25,19 +25,35 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	private HttpSession session;
 	
-	@RequestMapping("/home")
+	@RequestMapping("/")
 	public String home() {
-		return "home";
+		return "home"; //.jsp 생략
+	}
+	
+	@RequestMapping("home")
+	public String home1() {
+		return "home"; //.jsp 생략
 	}
 	
 	@RequestMapping("/Login")
 	public String Login() {
-		return "Login";
+		return "Login"; //.jsp 생략
+	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpServletRequest hsr) {
+		HttpSession session=hsr.getSession();
+		session.invalidate(); //세션값을 초기화
+		return "redirect:home"; //.jsp 생략
 	}
 	
 	@RequestMapping("/room")
-	public String room() {
-		return "room";
+	public String room(HttpServletRequest hsr) {
+		HttpSession session=hsr.getSession();
+		if(session.getAttribute("loginid")==null) {
+			return "redirect:login"; //.jsp 생략
+		}
+		return "room"; //.jsp 생략
 	}
 	
 	@RequestMapping(value="/check_user",method=RequestMethod.POST)
@@ -51,20 +67,33 @@ public class HomeController {
 		return "redirect://booking"; //RequestMapping의 경로이름
 	}
 	
+	/*
 	@RequestMapping(value="/booking",method=RequestMethod.GET)
 	public String booking(HttpServletRequest hsr) {
 		HttpSession session = hsr.getSession();
 		session.setAttribute("nickname", "aud");
 		return "booking"; //jsp화일 이름
 	}
+	*/
+	
+	@RequestMapping(value="/booking",method=RequestMethod.GET)
+	public String booking(HttpServletRequest hsr) {
+		HttpSession session = hsr.getSession();
+		String loginid=(String)session.getAttribute("loginid");
+		if(!loginid.equals("")) {
+			return "booking"; //.jsp 생략
+		} else {
+			return "redirect:/login"; //JSP화일이름
+		}
+	}
 	
 	@RequestMapping("/selected")
 	public String doJob(HttpServletRequest hsr,Model model) {
 	String strPath=hsr.getParameter("path");
 		if(strPath.equals("Login")) {
-			return "Login";
+			return "Login"; //.jsp 생략
 		} else if(strPath.equals("newbie")) {
-			return "newbie";
+			return "newbie"; //.jsp 생략
 		} else {
 			return "redirect:home"; //redirect:요청경로명
 		}
@@ -89,7 +118,7 @@ public class HomeController {
 		model.addAttribute("passcode",pw);
 		model.addAttribute("passcode2",pw2);
 		model.addAttribute("mobile",mb);
-		return "newinfo";
+		return "newinfo"; //.jsp 생략
 	}
 	
 	@RequestMapping("/viewinfo")
@@ -102,7 +131,7 @@ public class HomeController {
 		
 		model.addAttribute("userid",uid);
 		model.addAttribute("passcode",pw);
-		return "viewinfo";
+		return "viewinfo"; //.jsp 생략
 	}
 	
 }
