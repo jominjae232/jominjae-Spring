@@ -24,9 +24,14 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	private HttpSession session;
 	
-	@RequestMapping("/home")
+	@RequestMapping("/")
 	public String home() {
-		return "home";
+		return "home"; //.jsp 생략
+	}
+	
+	@RequestMapping("home")
+	public String home1() {
+		return "home"; //.jsp 생략
 	}
 	
 	@RequestMapping("/Login")
