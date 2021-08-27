@@ -60,20 +60,20 @@ public class HomeController {
 	public String doInfo(HttpServletRequest hsr, Model model) {
 		String una=hsr.getParameter("username");
 		String uid=hsr.getParameter("userid");
-		String pw=hsr.getParameter("password1");
-		String pw2=hsr.getParameter("password2");
+		String pw=hsr.getParameter("passcode");
+		String pw2=hsr.getParameter("passcode2");
 		String mb=hsr.getParameter("mobile");
 		
 //		System.out.println("usename="+una);
 //		System.out.println("userid="+uid);
-//		System.out.println("password1="+pw);
-//		System.out.println("password2="+pw2);
+//		System.out.println("passcode="+pw);
+//		System.out.println("passcode2="+pw2);
 //		System.out.println("mobile="+mb);
 		
 		model.addAttribute("username",una);
 		model.addAttribute("userid",uid);
-		model.addAttribute("password1",pw);
-		model.addAttribute("password2",pw2);
+		model.addAttribute("passcode",pw);
+		model.addAttribute("passcode2",pw2);
 		model.addAttribute("mobile",mb);
 		return "newinfo";
 	}
@@ -81,13 +81,13 @@ public class HomeController {
 	@RequestMapping("/viewinfo")
 	public String doInfo2(HttpServletRequest hsr2, Model model) {
 		String uid=hsr2.getParameter("userid");
-		String pw=hsr2.getParameter("password1");
+		String pw=hsr2.getParameter("passcode");
 		
 //		System.out.println("userid="+uid);
 //		System.out.println("password="+pw);
 		
 		model.addAttribute("userid",uid);
-		model.addAttribute("password1",pw);
+		model.addAttribute("passcode",pw);
 		return "viewinfo";
 	}
 	

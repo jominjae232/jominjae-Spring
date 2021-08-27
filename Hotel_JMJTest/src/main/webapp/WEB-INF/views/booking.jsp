@@ -11,7 +11,7 @@
 <body>
 <%
 	String loginid=(String)session.getAttribute("loginid");
-	out.println(loginid);
+	out.println("관리자 아이디: "+loginid);
 	if(!loginid.equals("aud")) {
 		response.sendRedirect("http://localhost:8080/app/Login");
 	}
@@ -35,8 +35,11 @@
         top: 0px;
     }
     .header_cont {
-    position:absolute;
-    margin: -55px 20px 30px
+    position: absolute;
+    margin: -55px 130px;
+    }
+    .minisrch_form{
+   	width: 558px;
     }
     </style>
                     </a>
@@ -46,12 +49,10 @@
                     	<button onclick="location.href='booking'">예약관리</button>
                     	<button onclick="location.href='room'" style="color: blue;">객실관리</button>
                     	<button onclick="location.href='home'" style="color: blue;">로그아웃</button>
-                    </ul>	
-                    <nav>
-                </div>
-            </div>
-        </header>
-
+                    </ul>
+				</div>
+				
+			<form>
             <div class="body_area box_inner">
                 <h2 class="tit_page">예약된 객실</h2>
                         <table border="1">
@@ -86,7 +87,9 @@
                             </table>
                         </ul>
                 </div>
+                </form>
         
+       		 </form>
             <div class="bodyte_area box_inner">
                 <a>객실 이름</a>&nbsp;<a><input type="text" name="Name" size="20"></a><br>
                 <a>숙박 기간</a></a><input type='date' name='userBirthday' value='YYYY:MM:DD'/><a>~</a><input type='date' name='userBirthday' value='YYYY:MM:DD'/><a>박</a><br>
@@ -94,12 +97,13 @@
                 <a>1박 비용</a>&nbsp;<a><input type="text" name="Name" size="20">(원)</a><br>
                 <a>총 숙박비</a>&nbsp;<a><input type="text" name="Name" size="20">(원)</a><br>
                 <a>예약자 모바일</a><br><a><input type="text" name="Name" size="20"></a>
-                <p class="btn_line">
+                
                     <button type="submit" style="background-color: greenyellow;" href="#" class="btn_baseColor1">등록</button>
                     <button type="reset" style="background-color: rgb(236, 131, 11);" href="#" class="btn_baseColor2">삭제</button>
                     <button type="reset" style="background-color: red;" href="#" class="btn_baseColor3">Clear</button>
             </div>
-            <div class="bodytext_area box_inner">
+            </form>
+            
                 <!-- 검색폼영역 -->
                 <form id="search_form" name="search_form" action="board_list.html" class="minisrch_form">
                     <fieldset>
@@ -111,6 +115,7 @@
                 </form>
                 <!-- //검색폼영역 -->
                 
+                <form>
                 <!-- 호텔 관리 영역 -->
                 <table class="bbsListTbl" summary="방이름, 방 크기, 사용 가능인원, 1박 가격을 제공하는 표">
                     <div class="box_inner">
@@ -145,15 +150,10 @@
                                 <td>50,000</td>
                             </tr><!-- // 네번째 줄 -->
                             </table>
-                        </ul>
-                    </div>
-                </p>
-                <!-- //호텔 관리 영역 -->
-                </div>
-            </div>
-        </div>
+                    	</ul>
+                	</div>
+	       		</table>
+            </form>
+        <!-- //호텔 관리 영역 -->
     </body>
-<script>
-
-</script>
 </html>

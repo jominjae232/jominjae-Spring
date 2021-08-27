@@ -8,7 +8,7 @@
 </head>
 <body>
 <p>로긴아이디: ${userid}</p>
-<p>비밀번호: ${password1}</p><br>
+<p>비밀번호: ${passcode}</p><br>
 <button onclick="location.href='home'">돌아가기</button>
 </body>
 </html>
