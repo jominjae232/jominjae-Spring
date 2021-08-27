@@ -12,7 +12,7 @@
     <style>
     .bodytext_area {
     position: absolute;
-    margin-left: 5px;
+    margin-left: 5px; 
     top: 50px;
 	}
 
