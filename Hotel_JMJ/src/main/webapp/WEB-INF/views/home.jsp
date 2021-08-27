@@ -7,7 +7,7 @@
 <title>홈페이지</title>
 </head>
 <body>
-<a href='selected?path=Login'>로그인</a>&nbsp;&nbsp;
+<a href='selected?path=Login'>관리자 로그인</a>&nbsp;&nbsp;
 <a href='selected?path=newbie'>회원가입</a>
 </body>
 </html>

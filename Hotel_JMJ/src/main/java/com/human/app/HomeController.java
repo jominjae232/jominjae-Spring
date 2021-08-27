@@ -31,6 +31,16 @@ public class HomeController {
 		return "Login";
 	}
 	
+	@RequestMapping("/room")
+	public String doChoose2() {
+		return "room";
+	}
+	
+	@RequestMapping("/booking")
+	public String doChoose3() {
+		return "booking";
+	}
+	
 	@RequestMapping("/selected")
 	public String doJob(HttpServletRequest hsr,Model model) {
 	String strPath=hsr.getParameter("path");
@@ -50,6 +60,7 @@ public class HomeController {
 		String pw=hsr.getParameter("password1");
 		String pw2=hsr.getParameter("password2");
 		String mb=hsr.getParameter("mobile");
+		
 //		System.out.println("usename="+una);
 //		System.out.println("userid="+uid);
 //		System.out.println("password1="+pw);
@@ -68,6 +79,7 @@ public class HomeController {
 	public String doInfo2(HttpServletRequest hsr2, Model model) {
 		String uid=hsr2.getParameter("userid");
 		String pw=hsr2.getParameter("password1");
+		
 //		System.out.println("userid="+uid);
 //		System.out.println("password="+pw);
 		
