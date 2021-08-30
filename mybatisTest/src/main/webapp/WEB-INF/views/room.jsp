@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +10,13 @@
     <title>객실관리</title>
 </head>
 <body>
+
+<select size=10 style="width: 250px;">
+<c:forEach items="${list}" var="room">
+	<option>${room.roomcode},${room.name},${room.type},${room.howmany},${room.howmuch}</option>
+</c:forEach>
+</select>
+
     <style>
     .bodytext_area {
     position: absolute;

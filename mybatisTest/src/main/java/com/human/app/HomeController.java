@@ -1,12 +1,14 @@
 package com.human.app;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	private HttpSession session;
+	@Autowired
+	private SqlSession sqlSession;
 	
 	@RequestMapping("/")
 	public String home() {
@@ -53,14 +57,18 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/room")
-	public String room(HttpServletRequest hsr) {
+	public String room(HttpServletRequest hsr,Model model) {
 		HttpSession session=hsr.getSession();
 		if(session.getAttribute("loginid")==null) {
 			return "redirect:login"; //.jsp 생략
 		}
-		return "room"; //.jsp 생략
+		//여기서 interface호출하고 결과를 room.jsp에 전달
+		iRoom room=sqlSession.getMapper(iRoom.class);
+		ArrayList<Roominfo> roominfo=room.getRoomList();
+		System.out.println(roominfo);
+		model.addAttribute("list",roominfo);
+		return "room";
 	}
-	
 	
 	@RequestMapping(value="/check_user",method=RequestMethod.POST)
 	public String check_user(HttpServletRequest hsr, Model model) {
