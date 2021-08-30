@@ -11,8 +11,9 @@
 <body>
 <%
 	String loginid=(String)session.getAttribute("loginid");
+	String passcode=(String)session.getAttribute("passcode");
 	out.println("관리자 아이디: "+loginid);
-	if(!loginid.equals("aud")) {
+	if(!loginid.equals("aud") || !passcode.equals("1234")) {
 		response.sendRedirect("http://localhost:8080/app/");
 	}
 %>

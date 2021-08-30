@@ -69,16 +69,11 @@ public class HomeController {
 		
 		HttpSession session=hsr.getSession();
 		session.setAttribute("loginid",userid);
+		session.setAttribute("passcode",passcode);
 		
-		return "redirect://booking"; //RequestMapping의 경로이름
+		return "redirect:/booking"; //RequestMapping의 경로이름
 	}
 	
-	@RequestMapping(value="/booking",method=RequestMethod.GET)
-	public String booking1(HttpServletRequest hsr) {
-		HttpSession session = hsr.getSession();
-		session.setAttribute("nickname", "aud");
-		return "booking"; //jsp화일 이름
-	}
 	
 	/*
 	@RequestMapping(value="/check_user",method=RequestMethod.GET)
@@ -92,6 +87,17 @@ public class HomeController {
 		}
 	}
 	*/
+	
+	@RequestMapping(value="/booking",method=RequestMethod.GET)
+	public String booking1(HttpServletRequest hsr) {
+		HttpSession session = hsr.getSession();
+		String loginid=(String)session.getAttribute("loginid");
+		if(loginid.equals("") || loginid==null) {
+			return "redirect:/home"; //JSP 화일 이름
+		} else {
+			return "booking";
+		}
+	}
 	
 	@RequestMapping("/selected")
 	public String doJob(HttpServletRequest hsr,Model model) {

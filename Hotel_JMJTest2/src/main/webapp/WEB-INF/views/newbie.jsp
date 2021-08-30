@@ -14,7 +14,7 @@
 	비밀번호 확인: <input type="password" name=passcode2><br>
 	모바일: <input type="text" name=mobile><br>
 	<input type=submit value="등록" location.href='home'>
+	<button onclick="location.href='home'">취소</button>
 </form>
-<button onclick="location.href='home'">취소</button>
 </body>
 </html>
