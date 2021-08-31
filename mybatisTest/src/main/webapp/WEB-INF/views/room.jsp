@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +11,14 @@
     <title>객실관리</title>
 </head>
 <body>
-
-<select size=10 style="width: 250px;">
-<c:forEach items="${list}" var="room">
-	<option>${room.roomcode},${room.name},${room.type},${room.howmany},${room.howmuch}</option>
-</c:forEach>
-</select>
-
     <style>
     .bodytext_area {
     position: absolute;
-    margin-left: 500px;
+    left: 500px;
     top: 50px;
 	}
     </style>
+    
                     </a>
                 </p>
                 <div class="header_cont">
@@ -42,29 +37,11 @@
                 <div class="box_inner">
                     <h2 class="tit_page">객실목록</h2>
                     <table border="1">
-                        <th>방 이름</th>
-                        <th>방 크기</th>
-                        <th>사용 가능 인원</th>
-                        <tr><!-- 첫번째 줄 -->
-                            <td><button type="submit" class="Room_name1" name=Room1>백두산</button></td>
-                            <td>Suite Room</td>
-                            <td>4명</td>
-                        </tr><!-- // 첫번째 줄 -->
-                        <tr><!-- 두번째 줄 -->
-                            <td><button type="submit" class="Room_name2" name=Room2>한라산</button></td>
-                            <td>Family Room</td>
-                            <td>6명</td>
-                        </tr><!-- // 두번째 줄 -->
-                        <tr><!-- 세번째 줄 -->
-                            <td><button type="submit" class="Room_name3" name=Room3>태조산</button></td>
-                            <td>Double Room</td>
-                            <td>4명</td>
-                        </tr><!-- // 세번째 줄 -->
-                        <tr><!-- 네번째 줄 -->
-                            <td><button type="submit" class="Room_name3" name=Room4>흑성산</button></td>
-                            <td>Single Room</td>
-                            <td>2명</td>
-                        </tr><!-- // 네번째 줄 -->
+                    	<select size=10 style="width: 250px;">
+							<c:forEach items="${list}" var="room">
+								<option>${room.roomcode},${room.name},${room.type},${room.howmany},${room.howmuch}</option>
+							</c:forEach>
+						</select>
                         </table>
                     </ul>
                 </div>
@@ -81,43 +58,34 @@
                     </fieldset>
                 </form>
                 <!-- //검색폼영역 -->
-                
+                <h3>객실분류</h3>
                 <!-- 호텔 관리 영역 -->
                 </form>
-                <table class="bbsListTbl" summary="번호,제목,조회수,작성일 등을 제공하는 표">
-                    <caption class="hdd">객실 분류</caption>
-                    <thead>
-                        <tr>
-                            <th> 객실 크기 번호 </th>
-                            <th> 객실 크기 </th>
-                    </thead>
-                    <tbody>
-                        <tr><!-- 첫번째 줄 -->
-                            <td><button type="submit" class="btn_Num1">1</button></td>
-                            <td>Suite Room</td>
-                        </tr><!-- // 첫번째 줄 -->
-                        <tr><!-- 두번째 줄 -->
-                            <td><button type="submit" class="btn_Num2">2</td>
-                            <td>Family Room</td>
-                        </tr><!-- // 두번째 줄 -->
-                        <tr><!-- 세번째 줄 -->
-                            <td><button type="submit" class="btn_Num3">3</td>
-                            <td>Double Room</td>
-                        </tr><!-- // 세번째 줄 -->
-                        <tr><!-- 네번째 줄 -->
-                            <td><button type="submit" class="btn_Num4">4</td>
-                            <td>Single Room</td>
-                        </tr><!-- //네번째 줄 -->
-                        <tr><!-- 다섯번째 줄 -->
-                            <td><button type="submit" class="btn_Num5">5</td>
-                            <td>Domitory</td>
-                        </tr><!-- // 다섯번째 줄 -->
-                    </tbody>
+                <table class="bbsListTbl">
+                    
+                    <select size=10 style="width: 250px;">
+						<c:forEach items="${list_type}" var="type">
+							<option>${type.typecode},${type.name}</option>
+						</c:forEach>
+				</select>
+				<tr>
+					<td>
+						<a>타입</a>&nbsp;
+						<select size="5" style="width: 120px;" id="selType">
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a>숙박 가능 인원</a>&nbsp;<input type="number" name="Man" size="20">(명)<br>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a>1박 요금</a>&nbsp;<input type="number" name="Won" size="20">(원)
+					</td>
+				</tr>
                 </table>
-                
-                
-                <a>숙박 가능 인원</a>&nbsp;<a><input type="text" name="Name" size="20">(명)</a><br>
-                <a>1박 요금</a>&nbsp;<a><input type="text" name="Name" size="20">(원)</a>
                 <p class="btn_line">
                     <button type="submit" style="background-color: greenyellow;" href="#" class="btn_baseColor1">등록</button>
                     <button type="reset" style="background-color: rgb(236, 131, 11);" href="#" class="btn_baseColor2">삭제</button>

@@ -9,4 +9,7 @@
 	<select id="getRoomList" resultType="com.human.app.Roominfo">
 		select roomcode,name,type,howmany,howmuch from room order by name
 	</select>
+	<select id="getRoomType" resultType="com.human.app.RoomType">
+		select typecode,name from roomType order by typecode
+	</select>
 </mapper>
