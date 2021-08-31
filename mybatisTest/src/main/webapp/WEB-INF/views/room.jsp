@@ -62,14 +62,56 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
-room[] = '${list}'
-String[] ar = room.split(',');
+/*
+room1 = '$(this).${list}'
+ar1 = room1.split(',');
 $(document)
-.on('click','#room',function(){
-	 $('#txtName').val('a[0]');
-	 $('#txtType option:selected').val('a[1]');
-	 $('#txtNum').val('a[2]');
-	 $('#txtPrice').val('a[3]');
+	.on('click','#room',function(){
+	 $('#txtName').val(ar1[0]);
+	 $('#txtType option:selected').val(ar1[1]);
+	 $('#txtNum').val(ar1[2]);
+	 $('#txtPrice').val(ar1[3]);
 });
+*/
+/*
+room = '백두산,suite Room,8,500000'
+	ar = room.split(',');
+	$(document)
+	.on('click','#room',function(){
+		 $('#txtName').val(ar[0]);
+		 $('#txtType option:selected').val(ar[1]);
+		 $('#txtNum').val(ar[2]);
+		 $('#txtPrice').val(ar[3]);
+});
+	*/
+room = '백두산,Single Room,2,200000'
+	ar = room.split(',');
+	$(document)
+	.on('click','#room',function(){
+		 $('#txtName').val(ar[0]);
+		 $('#txtType option:selected').val(ar[1]);
+		 $('#txtNum').val(ar[2]);
+		 $('#txtPrice').val(ar[3]);
+});
+	/*
+room = '지리산,Double Room,5,400000'
+ar = room.split(',');
+$(document)
+	.on('click','#room',function(){
+		 $('#txtName').val(ar[0]);
+		 $('#txtType option:selected').val(ar[1]);
+		 $('#txtNum').val(ar[2]);
+		 $('#txtPrice').val(ar[3]);
+});
+room = '백두산,suite Room,8,500000'
+ar = room.split(',');
+$(document)
+	.on('click','#room',function(){
+		 $('#txtName').val(ar[0]);
+		 $('#txtType option:selected').val(ar[1]);
+		 $('#txtNum').val(ar[2]);
+		 $('#txtPrice').val(ar[3]);
+});
+*/
 </script>
 </html>
