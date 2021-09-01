@@ -64,9 +64,9 @@
 <script>
 $(document)
 .on('click','#selRoom option',function(){
-	let str=$(this).text();
+	let str_room=$(this).text();
 	//console.log(str);
-	let ar=str.split(',');
+	let ar=str_room.split(',');
 	$('#txtName').val($.trim(ar[0]));
 	//console.log('['+ar[1]+']');
 	$('#selType option:contains("'+$.trim(ar[1])+'")').prop('selected',true); //attr / prop | 'selected' / 'true' 
