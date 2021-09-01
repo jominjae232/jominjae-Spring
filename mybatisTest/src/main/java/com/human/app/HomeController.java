@@ -64,7 +64,7 @@ public class HomeController {
 	public String room(HttpServletRequest hsr,Model model) {
 		HttpSession session=hsr.getSession();
 		if(session.getAttribute("loginid")==null) {
-			return "redirect:login"; //.jsp 생략
+			return "redirect:login"; //.jsp 생략 
 		}
 		//여기서 interface호출하고 결과를 room.jsp에 전달
 		iRoom room=sqlSession.getMapper(iRoom.class);
