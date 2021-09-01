@@ -15,9 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /**
  * Handles requests for the application home page.
@@ -64,15 +68,40 @@ public class HomeController {
 		}
 		//여기서 interface호출하고 결과를 room.jsp에 전달
 		iRoom room=sqlSession.getMapper(iRoom.class);
-		ArrayList<Roominfo> roominfo=room.getRoomList();
-		model.addAttribute("list",roominfo);
-		
+		/*
+		*ArrayList<Roominfo> roominfo=room.getRoomList();
+		*model.addAttribute("list",roominfo);
+		*/
 		
 		iRoom room_type = sqlSession.getMapper(iRoom.class);
 		ArrayList<RoomType> roomtype=room.getRoomType();
 		model.addAttribute("list_type",roomtype);
 		return "room";
 	}
+	
+	/* JSON 사용 */
+	// produces="application/text; charset=utf8" == 한글깨짐 방지 코드 
+	@RequestMapping(value="/getRoomList",method=RequestMethod.POST,
+					produces="application/text; charset=utf8")
+	@ResponseBody
+	public String getRoomList(HttpServletRequest hsr) {
+		iRoom room=sqlSession.getMapper(iRoom.class);
+		ArrayList<Roominfo> roominfo=room.getRoomList();
+		// 찾아진 데이터로 JSONArray만들기
+		JSONArray ja = new JSONArray(); //JSONArray ja 생성
+		for(int i=0; i<roominfo.size();i++) { //roominfo 크기만큼 반복
+			JSONObject jo = new JSONObject(); // JSONObject jo 생성
+			jo.put("roomcode", roominfo.get(i).getRoomcode()); // JSONObject jo에 데이터 입력
+			jo.put("roomname", roominfo.get(i).getRoomname()); // JSONObject jo에 데이터 입력
+			jo.put("typename", roominfo.get(i).getTypename()); // JSONObject jo에 데이터 입력
+			jo.put("howmany", roominfo.get(i).getHowmany()); // JSONObject jo에 데이터 입력
+			jo.put("howmuch", roominfo.get(i).getHowmuch()); // JSONObject jo에 데이터 입력
+			ja.add(jo); // JSONArray ja에 JSONObject jo에 있는 데이터 값 입력
+		}
+		// System.out.println(ja.toString()); == debug용 코드 
+		return ja.toString(); // JSON ja의 데이터를 문자열로 바꿈 
+	}
+	
 	
 	@RequestMapping(value="/check_user",method=RequestMethod.POST)
 	public String check_user(HttpServletRequest hsr, Model model) {

@@ -21,9 +21,11 @@
 <tr>
 	<td align=center>객실 목록</td><td>
 		<select size=10 style="width: 250px;" id="selRoom">
+		<!-- 
 				<c:forEach items="${list}" var="room">
 					<option value='${room.roomcode}'>${room.roomname},${room.typename},${room.howmany},${room.howmuch}</option>
 				</c:forEach>
+		 -->
 		</select>
 	</td>
 	<td>
@@ -36,9 +38,13 @@
 			<td align="right">타입</td>
 				<td>
 					<select size="5" style="width: 120px" id=selType>
+					
+					<!--  
 						<c:forEach items="${list_type}" var="type">
 							<option value="${type.typecode}">${type.name}</option>
 						</c:forEach>
+					-->
+						
 					</select>
 				</td>
 			</tr>
@@ -62,7 +68,17 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
+
+//JSON
 $(document)
+.ready(function(){
+	console.log('ready')
+	$.post("http://localhost:8080/app/getRoomList",{},function(result){
+		console.log(result);
+	},'json');
+})
+
+
 .on('click','#selRoom option',function(){
 	let str_room=$(this).text();
 	//console.log(str);
