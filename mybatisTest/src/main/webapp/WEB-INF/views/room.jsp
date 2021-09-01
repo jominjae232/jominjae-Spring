@@ -67,10 +67,11 @@ $(document)
 	let str=$(this).text();
 	//console.log(str);
 	let ar=str.split(',');
-	$('#txtName').val(ar[0]);
-	$('#selType option:contains("'+ar[1]+'")').attr('selected','selected');
-	$('#txtNum').val(ar[2]);
-	$('#txtPrice').val(ar[3]);
+	$('#txtName').val($.trim(ar[0]));
+	//console.log('['+ar[1]+']');
+	$('#selType option:contains("'+$.trim(ar[1])+'")').prop('selected',true); //attr / prop | 'selected' / 'true' 
+	$('#txtNum').val($.trim(ar[2]));
+	$('#txtPrice').val($.trim(ar[3]));
 	let code=$(this).val();
 	$('#roomcode').val(code);
 	return false;
