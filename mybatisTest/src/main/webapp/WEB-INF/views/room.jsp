@@ -20,7 +20,7 @@
 <table border="1">
 <tr>
 	<td align=center>객실 목록</td><td>
-		<select size=10 style="width: 250px;" id="room">
+		<select size=10 style="width: 250px;" id="selRoom">
 				<c:forEach items="${list}" var="room">
 					<option value='${room.roomcode}'>${room.roomname},${room.typename},${room.howmany},${room.howmuch}</option>
 				</c:forEach>
@@ -35,7 +35,7 @@
 		<tr>
 			<td align="right">타입</td>
 				<td>
-					<select size="5" style="width: 120px" id=txtType>
+					<select size="5" style="width: 120px" id=selType>
 						<c:forEach items="${list_type}" var="type">
 							<option value="${type.typecode}">${type.name}</option>
 						</c:forEach>
@@ -62,56 +62,24 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
-/*
-room1 = '$(this).${list}'
-ar1 = room1.split(',');
 $(document)
-	.on('click','#room',function(){
-	 $('#txtName').val(ar1[0]);
-	 $('#txtType option:selected').val(ar1[1]);
-	 $('#txtNum').val(ar1[2]);
-	 $('#txtPrice').val(ar1[3]);
-});
-*/
-/*
-room = '백두산,suite Room,8,500000'
-	ar = room.split(',');
-	$(document)
-	.on('click','#room',function(){
-		 $('#txtName').val(ar[0]);
-		 $('#txtType option:selected').val(ar[1]);
-		 $('#txtNum').val(ar[2]);
-		 $('#txtPrice').val(ar[3]);
-});
-	*/
-room = '백두산,Single Room,2,200000'
-	ar = room.split(',');
-	$(document)
-	.on('click','#room',function(){
-		 $('#txtName').val(ar[0]);
-		 $('#txtType option:selected').val(ar[1]);
-		 $('#txtNum').val(ar[2]);
-		 $('#txtPrice').val(ar[3]);
-});
-	/*
-room = '지리산,Double Room,5,400000'
-ar = room.split(',');
-$(document)
-	.on('click','#room',function(){
-		 $('#txtName').val(ar[0]);
-		 $('#txtType option:selected').val(ar[1]);
-		 $('#txtNum').val(ar[2]);
-		 $('#txtPrice').val(ar[3]);
-});
-room = '백두산,suite Room,8,500000'
-ar = room.split(',');
-$(document)
-	.on('click','#room',function(){
-		 $('#txtName').val(ar[0]);
-		 $('#txtType option:selected').val(ar[1]);
-		 $('#txtNum').val(ar[2]);
-		 $('#txtPrice').val(ar[3]);
-});
-*/
+.on('click','#selRoom option',function(){
+	let str=$(this).text();
+	//console.log(str);
+	let ar=str.split(',');
+	$('#txtName').val(ar[0]);
+	$('#selType option:contains("'+ar[1]+'")').attr('selected','selected');
+	$('#txtNum').val(ar[2]);
+	$('#txtPrice').val(ar[3]);
+	let code=$(this).val();
+	$('#roomcode').val(code);
+	return false;
+})
+
+.on('click','#btnEmpty',function(){
+	$('#txtName,#txtNum,#txtPrice,#roomcode,#selType').val('');
+	return false;
+})
+
 </script>
 </html>
