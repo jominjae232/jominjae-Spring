@@ -21,11 +21,11 @@
 <tr>
 	<td align=center>객실 목록</td><td>
 		<select size=10 style="width: 250px;" id="selRoom">
-		<!-- 
+		<!--  
 				<c:forEach items="${list}" var="room">
 					<option value='${room.roomcode}'>${room.roomname},${room.typename},${room.howmany},${room.howmuch}</option>
 				</c:forEach>
-		 -->
+		-->
 		</select>
 	</td>
 	<td>
@@ -38,13 +38,9 @@
 			<td align="right">타입</td>
 				<td>
 					<select size="5" style="width: 120px" id=selType>
-					
-					<!--  
 						<c:forEach items="${list_type}" var="type">
 							<option value="${type.typecode}">${type.name}</option>
 						</c:forEach>
-					-->
-						
 					</select>
 				</td>
 			</tr>
@@ -72,13 +68,16 @@
 //JSON
 $(document)
 .ready(function(){
-	console.log('ready')
 	$.post("http://localhost:8080/app/getRoomList",{},function(result){
 		console.log(result);
+		$.each(result,function(ndx,value){ // == for(i=0;i<result.length;i++){}
+			str='<option value="'+value['roomcode']+'">'+value['roomname']+','+
+				value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
+			$('#selRoom').append(str);
+		});
 	},'json');
 })
-
-
+ 
 .on('click','#selRoom option',function(){
 	let str_room=$(this).text();
 	//console.log(str);
@@ -98,5 +97,36 @@ $(document)
 	return false;
 })
 
+.on('click','#btnDelete',function(){
+	$.post('http://localhost:8080/app/deleteRoom',{roomcode:$('#roomcode').val()},
+			function(result){
+		console.log(result);
+		if(result=="ok") {
+			$('#btnEmpty').trigger('click'); //입력란 비우기
+			$('#selRoom option:selected').remove(); //room리스트에서 제거
+		}
+	},'text');
+	return false;
+})
+
+.on('click','#btnAdd',function(){
+	let roomname=$('#txtName').val();
+	let roomtype=$('#selType').val();
+	let howmany=$('#txtNum').val();
+	let howmuch=$('#txtPrice').val();
+	// validation(유효성 검사)
+	if(roomname=='' || roomtype=='' || howmany=='' || howmuch=='') {
+		alert('누락된 값이 있습니다.');
+		return false;
+	}
+	$.post('http://localhost:8080/app/addRoom',
+	{roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
+	function(result){
+		if(result=='ok') {
+			location.reload();
+		}
+	},'text');
+	return false;
+})
 </script>
 </html>

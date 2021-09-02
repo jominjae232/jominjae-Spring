@@ -102,6 +102,28 @@ public class HomeController {
 		return ja.toString(); // JSON ja의 데이터를 문자열로 바꿈 
 	}
 	
+	@RequestMapping(value="/deleteRoom",method=RequestMethod.POST,
+			produces="application/text; charset=utf8")
+	@ResponseBody
+	public String deleteRoom(HttpServletRequest hsr) {
+		int roomcode=Integer.parseInt(hsr.getParameter("roomcode"));
+		iRoom room=sqlSession.getMapper(iRoom.class);
+		room.doDeleteRoom(roomcode);
+		return "ok";
+	}
+	
+	@RequestMapping(value="/addRoom",method=RequestMethod.POST,
+			produces="application/text; charset=utf8")
+	@ResponseBody
+	public String addRoom(HttpServletRequest hsr) {
+		String rname=hsr.getParameter("roomname");
+		String rtype=hsr.getParameter("roomtype");
+		int howmany=Integer.parseInt(hsr.getParameter("howmany"));
+		int howmuch=Integer.parseInt(hsr.getParameter("howmuch"));
+		iRoom room=sqlSession.getMapper(iRoom.class);
+		room.doAddRoom(rname,rtype,howmany,howmuch);
+		return "ok";
+	}
 	
 	@RequestMapping(value="/check_user",method=RequestMethod.POST)
 	public String check_user(HttpServletRequest hsr, Model model) {
