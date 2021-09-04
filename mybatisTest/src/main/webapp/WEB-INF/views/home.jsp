@@ -7,11 +7,16 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 </head>
+<style>
+    body{
+     background:url("../image/home.jpg") no-repeat;
+     }
+</style>
 <body>
-<form method="POST" action="/app/check_user" id="frmLogin">
+<form method="POST" action="/app/check_user" id="frmLogin" style="margin: 300px 200px">
 	로긴아이디: <input type="text" name=userid><br>
 	비밀번호: <input type="password" name=passcode><br>
-	<input type=submit vlaue='로그인'>&nbps;
+	<input type=submit value="로그인">
 	<input type="reset" value="취소">
 	<a href='/app/newbie'>회원가입</a>
 </form>
