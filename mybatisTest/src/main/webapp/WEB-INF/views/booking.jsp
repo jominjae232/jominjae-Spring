@@ -9,14 +9,6 @@
     <title>예약관리</title>
 </head>
 <body>
-<%
-	String loginid=(String)session.getAttribute("loginid");
-	String passcode=(String)session.getAttribute("passcode");
-	out.println("관리자 아이디: "+loginid);
-	if(!loginid.equals("aud") || !passcode.equals("1234")) {
-		response.sendRedirect("http://localhost:8080/app/");
-	}
-%>
     <style>
     .bodytext_area {
     position: absolute;
@@ -37,7 +29,7 @@
     }
     .header_cont {
     position: absolute;
-    margin: -55px 130px;
+    margin: -20px 600px;
     }
     .minisrch_form{
    	width: 558px;
