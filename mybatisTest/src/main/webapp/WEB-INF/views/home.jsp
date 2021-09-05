@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
 </head>
-<style>
-    body{
-     background:url("../image/home.jpg") no-repeat;
-     }
-</style>
 <body>
 <form method="POST" action="/app/check_user" id="frmLogin" style="margin: 300px 200px">
 	로긴아이디: <input type="text" name=userid><br>
@@ -21,6 +15,11 @@
 	<a href='/app/newbie'>회원가입</a>
 </form>
 </body>
+<style>
+    body{
+     background-image: url('./home.jpg');
+     }
+</style>
 <script src='https:code.jquery.com/jQuery-3.5.0.js'></script>
 <script>
 $(document)
