@@ -114,9 +114,14 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="booking",method = RequestMethod.GET)
-	public String booking(HttpServletRequest hsr) {
+	public String booking(HttpServletRequest hsr,Model model) {
 		HttpSession session=hsr.getSession(true);
-		String loginid=(String)session.getAttribute("loginid");	
+		String loginid=(String)session.getAttribute("loginid");
+		
+		iRoom room=sqlSession.getMapper(iRoom.class);
+		iRoom room_type = sqlSession.getMapper(iRoom.class);
+		ArrayList<RoomType> roomtype=room.getRoomType();
+		model.addAttribute("list_types",roomtype);
 			return "booking";
 	}
 	
@@ -145,12 +150,14 @@ public class HomeController {
 		session.invalidate();
 		return "redirect:/";
 }
+	
 	/* JSON 사용 */
 	// produces="application/text; charset=utf8" == 한글깨짐 방지 코드 
 	@RequestMapping(value="/getRoomList",method=RequestMethod.POST,
 					produces="application/text; charset=utf8")
 	@ResponseBody
 	public String getRoomList(HttpServletRequest hsr) {
+		System.out.println("debugegetRoomlist");
 		iRoom room=sqlSession.getMapper(iRoom.class);
 		ArrayList<Roominfo> roominfo=room.getRoomList();
 		// 찾아진 데이터로 JSONArray만들기
@@ -167,6 +174,30 @@ public class HomeController {
 		// System.out.println(ja.toString()); == debug용 코드 
 		return ja.toString(); // JSON ja의 데이터를 문자열로 바꿈 
 	}
+	
+	
+	@RequestMapping(value="/getBookingList",method=RequestMethod.POST,
+			produces="application/text; charset=utf8")
+	@ResponseBody
+	public String getBookingList(HttpServletRequest hsr) {
+		iRoom booking=sqlSession.getMapper(iRoom.class);
+		ArrayList<Booking> getBookingList=booking.getBookingList();
+	JSONArray ja1 = new JSONArray(); //JSONArray ja 생성
+	for(int i=0; i<getBookingList.size();i++) { //booking 크기만큼 반복
+		JSONObject jo1 = new JSONObject(); // JSONObject jo 생성
+		jo1.put("bookcode", getBookingList.get(i).getBookcode()); // JSONObject jo에 데이터 입력
+		jo1.put("roomcode", getBookingList.get(i).getRoomcode()); // JSONObject jo에 데이터 입력
+		jo1.put("human", getBookingList.get(i).getHuman()); // JSONObject jo에 데이터 입력
+		jo1.put("checkin", getBookingList.get(i).getCheckin()); // JSONObject jo에 데이터 입력
+		jo1.put("checkout", getBookingList.get(i).getCheckout()); // JSONObject jo에 데이터 입력
+		jo1.put("txtName", getBookingList.get(i).getName()); // JSONObject jo에 데이터 입력
+		jo1.put("txtmobile", getBookingList.get(i).getMobile()); // JSONObject jo에 데이터 입력
+		ja1.add(jo1); // JSONArray ja에 JSONObject jo에 있는 데이터 값 입력
+	}
+	//System.out.println(ja.toString());// == debug용 코드 
+	return ja1.toString(); // JSON ja의 데이터를 문자열로 바꿈 
+}
+	
 	
 	@RequestMapping(value="/deleteRoom",method=RequestMethod.POST,
 			produces="application/text; charset=utf8")
@@ -191,6 +222,39 @@ public class HomeController {
 		return "ok";
 	}
 	
+	
+	@RequestMapping(value="/addbooking",method=RequestMethod.POST,
+			produces="application/text; charset=utf8")
+	@ResponseBody
+	public String addbooking(HttpServletRequest hsr) {
+		System.out.println("addbooking");
+		//int bookcode=Integer.parseInt(hsr.getParameter("bookcode"));
+		//System.out.println(bookcode);
+		int roomcode=Integer.parseInt(hsr.getParameter("roomcode"));
+		System.out.println(roomcode);
+		
+		int human=Integer.parseInt(hsr.getParameter("human"));
+		System.out.println(human);
+		
+		String checkin=hsr.getParameter("checkin");
+		System.out.println(checkin);
+		
+		String checkout=hsr.getParameter("checkout");
+		System.out.println(checkout);
+		
+		String bname=hsr.getParameter("txtName");
+		System.out.println(bname);
+		
+		String bmobile=hsr.getParameter("txtmobile");
+		System.out.println(bmobile);
+		
+		iRoom room=sqlSession.getMapper(iRoom.class);
+		System.out.println(roomcode+","+human+","+checkin+","+checkout+","+bname+","+bmobile);
+		room.doAddBooking(roomcode,human,checkin,checkout,bname,bmobile);
+		return "ok";
+	}
+	
+	
 	@RequestMapping(value="/updateRoom",method=RequestMethod.POST,
 			produces="application/text; charset=utf8")
 	@ResponseBody
@@ -203,6 +267,12 @@ public class HomeController {
 				Integer.parseInt(hsr.getParameter("howmuch")));
 		return "ok";
 	}
+
+
+
+
+
+
 }
 /*
 		
