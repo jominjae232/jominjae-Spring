@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +50,7 @@
 				<td align=right>예약인원</td><td><input type=number id=human></td>
 			</tr>
 			<tr>
-				<td align=right>최대숙박인원</td><td><input type=number id=txtNum></td>
+				<td align=right>최대숙박인원</td><td><input type=number id=txtNum>명</td>
 			</tr>
 			<tr>
 				<td align=right>예약기간</td><td><input type=text id=checkin>~<tr>
