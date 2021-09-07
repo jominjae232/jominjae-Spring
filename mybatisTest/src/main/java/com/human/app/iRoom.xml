@@ -12,9 +12,20 @@
 		where a.type=b.typecode order by roomcode
 	</select>
 	
+	
 	<select id="getBookingList" resultType="com.human.app.Booking">
-		select bookcode,roomcode,human,checkin,checkout,name,mobile from booking
+		select roomname,bookcode,roomcode,txtNum,human,checkin,checkout,total,name,mobile from booking
 	</select>
+	 
+	 
+	  <!--
+	<select id="doAddFind">
+		select a.bookcode,b.name,b.type,b.howmany max_howmany,a.human,a.checkin,a.checkout,a.total,a.name,a.mobile
+		from booking a, room b
+		<![CDATA[where a.checkout > #{param1} and a.checkin < #{param2}]]>
+		order by a.checkin;
+	</select>
+	  -->
 	
 	<select id="getBooking" resultType="com.human.app.Roominfo">
 		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch
@@ -33,8 +44,8 @@
 	</insert>
 	
 	<insert id='doAddBooking'>
-		insert into booking(bookcode,roomcode,human,checkin,checkout,name,mobile)
-		values(bookcode.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6})
+		insert into booking(bookcode,roomname,roomcode,txtNum,human,checkin,checkout,total,name,mobile)
+		values(bookcode.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},#{param8},#{param9})
 	</insert>
 	
 	<update id="doUpdateRoom">

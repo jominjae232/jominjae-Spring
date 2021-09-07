@@ -8,8 +8,9 @@ public interface iRoom {
 	ArrayList<RoomType> getRoomType();
 	void doDeleteRoom(int roomcode);
 	void doAddRoom(String roomname,int roomtype,int howmany,int howmuch);
-	void doAddBooking(int roomcode, int human,String checkin, String checkout,String name, String mobile);
+	void doAddBooking(String roomname,int roomcode,int txtNum,int human,String checkin, String checkout,int total,String name, String mobile);
 	void doUpdateRoom(int roomcode,String roomname,int roomtype,int howmany,int howmuch);
 	void doSignin(String txtname,String loginid, String passcode);
 	int doCheckUser(String userid,String passcode);
+	//void doAddFind(String checkin,String checkout);
 }

@@ -99,8 +99,8 @@ public class HomeController {
 	public String check_user(HttpServletRequest hsr,Model model) {
 		String userid=hsr.getParameter("userid");
 		String passcode=hsr.getParameter("passcode");
-		System.out.println(userid);
-		System.out.println(passcode);
+		//System.out.println(userid); == userid 값 받아오는지 확인하는 디버그용 코드
+		//System.out.println(passcode); == passcode 값 받아오는지 확인하는 디버그용 코드
 		iRoom room=sqlSession.getMapper(iRoom.class);
 		int n=room.doCheckUser(userid,passcode);
 		System.out.println(n);
@@ -113,6 +113,22 @@ public class HomeController {
 		}		
 	}
 	
+	@RequestMapping(value="/booking",method = RequestMethod.GET)
+	public String booking(HttpServletRequest hsr,Model model) {
+		HttpSession session=hsr.getSession();
+		String loginid=(String)session.getAttribute("loginid");
+		if(loginid==null) {
+			return "redirect:/home"; //.jsp생략
+		} else {
+			iRoom room = sqlSession.getMapper(iRoom.class);
+			iRoom room_type = sqlSession.getMapper(iRoom.class);
+			ArrayList<RoomType> roomtype=room.getRoomType();
+			model.addAttribute("roomtype",roomtype);
+				return "/booking";
+		}
+	}
+	
+	/*
 	@RequestMapping(value="booking",method = RequestMethod.GET)
 	public String booking(HttpServletRequest hsr,Model model) {
 		HttpSession session=hsr.getSession(true);
@@ -124,6 +140,7 @@ public class HomeController {
 		model.addAttribute("list_types",roomtype);
 			return "booking";
 	}
+	*/
 	
 	@RequestMapping("/room")
 	public String room(HttpServletRequest hsr,Model model) {
@@ -157,7 +174,7 @@ public class HomeController {
 					produces="application/text; charset=utf8")
 	@ResponseBody
 	public String getRoomList(HttpServletRequest hsr) {
-		System.out.println("debugegetRoomlist");
+		//System.out.println("debugegetRoomlist"); == RoomList로 들어오는지 확인하는 디버그 코드
 		iRoom room=sqlSession.getMapper(iRoom.class);
 		ArrayList<Roominfo> roominfo=room.getRoomList();
 		// 찾아진 데이터로 JSONArray만들기
@@ -185,11 +202,14 @@ public class HomeController {
 	JSONArray ja1 = new JSONArray(); //JSONArray ja 생성
 	for(int i=0; i<getBookingList.size();i++) { //booking 크기만큼 반복
 		JSONObject jo1 = new JSONObject(); // JSONObject jo 생성
+		jo1.put("roomname", getBookingList.get(i).getRoomname()); // JSONObject jo에 데이터 입력
 		jo1.put("bookcode", getBookingList.get(i).getBookcode()); // JSONObject jo에 데이터 입력
 		jo1.put("roomcode", getBookingList.get(i).getRoomcode()); // JSONObject jo에 데이터 입력
+		jo1.put("txtNum", getBookingList.get(i).getTxtNum()); // JSONObject jo에 데이터 입력
 		jo1.put("human", getBookingList.get(i).getHuman()); // JSONObject jo에 데이터 입력
 		jo1.put("checkin", getBookingList.get(i).getCheckin()); // JSONObject jo에 데이터 입력
 		jo1.put("checkout", getBookingList.get(i).getCheckout()); // JSONObject jo에 데이터 입력
+		jo1.put("total", getBookingList.get(i).getTotal()); // JSONObject jo에 데이터 입력
 		jo1.put("txtName", getBookingList.get(i).getName()); // JSONObject jo에 데이터 입력
 		jo1.put("txtmobile", getBookingList.get(i).getMobile()); // JSONObject jo에 데이터 입력
 		ja1.add(jo1); // JSONArray ja에 JSONObject jo에 있는 데이터 값 입력
@@ -222,7 +242,19 @@ public class HomeController {
 		return "ok";
 	}
 	
-	
+	/*
+	@RequestMapping(value="/addFind",method=RequestMethod.POST,
+			produces="application/text; charset=utf8")
+	@ResponseBody
+	public String addFind(HttpServletRequest hsr) {
+		String checkin=hsr.getParameter("checkin");
+		String checkout=hsr.getParameter("checkout");
+		iRoom room=sqlSession.getMapper(iRoom.class);
+		room.doAddFind(checkin,checkout);
+		return "ok";
+	}
+	*/
+		
 	@RequestMapping(value="/addbooking",method=RequestMethod.POST,
 			produces="application/text; charset=utf8")
 	@ResponseBody
@@ -230,27 +262,37 @@ public class HomeController {
 		System.out.println("addbooking");
 		//int bookcode=Integer.parseInt(hsr.getParameter("bookcode"));
 		//System.out.println(bookcode);
+		
+		String roomname=hsr.getParameter("roomname");
+		System.out.println(roomname+"객실이름");
+		
 		int roomcode=Integer.parseInt(hsr.getParameter("roomcode"));
-		System.out.println(roomcode);
+		System.out.println(roomcode+"객실타입");
+		
+		int txtNum=Integer.parseInt(hsr.getParameter("txtNum"));
+		System.out.println(txtNum+"예약인원");
 		
 		int human=Integer.parseInt(hsr.getParameter("human"));
-		System.out.println(human);
+		System.out.println(human+"최대인원");
 		
 		String checkin=hsr.getParameter("checkin");
-		System.out.println(checkin);
+		System.out.println(checkin+"체크인");
 		
 		String checkout=hsr.getParameter("checkout");
-		System.out.println(checkout);
+		System.out.println(checkout+"체크아웃");
+		
+		int total=Integer.parseInt(hsr.getParameter("total"));
+		System.out.println(total+"가격");
 		
 		String bname=hsr.getParameter("txtName");
-		System.out.println(bname);
+		System.out.println(bname+"예약자명");
 		
 		String bmobile=hsr.getParameter("txtmobile");
-		System.out.println(bmobile);
+		System.out.println(bmobile+"모바일번호");
 		
 		iRoom room=sqlSession.getMapper(iRoom.class);
-		System.out.println(roomcode+","+human+","+checkin+","+checkout+","+bname+","+bmobile);
-		room.doAddBooking(roomcode,human,checkin,checkout,bname,bmobile);
+		System.out.println(roomname+","+roomcode+","+txtNum+","+human+","+checkin+","+checkout+","+total+","+bname+","+bmobile);
+		room.doAddBooking(roomname,roomcode,txtNum,human,checkin,checkout,total,bname,bmobile);
 		return "ok";
 	}
 	
