@@ -91,7 +91,7 @@
 			<td align=center>예약된 객실</td>
 		<td>
 		
-		<select size=20 style="width: 740px;" id="selBookingList">
+		<select size=20 style="width: 760px;" id="selBookingList">
 		
 		<!--
 			<c:forEach items="${list}" var="booking">
@@ -108,21 +108,14 @@
 
 //JSON
 $(document)
-.ready(function(){	
+.ready(function(){
 	
 	//BookingList 출력 코드
-	$.post("http://localhost:8080/app/getBookingList",{},function(result){
-		console.log(result);
-		$.each(result,function(ndx,value){ // == for(i=0;i<result.length;i++){}
-			str='<option value="'+value['bookcode']+'">객실 이름: '+value['roomname']+",  객실타입: "+value['roomcode']+',  인원: '+
-			value['txtNum']+"/"+value['human']+',  기간: '+value['checkin']+'~'+value['checkout']+",  가격: "+value['total']+',  성함: '+value['txtName']+',  모바일: '+value['txtmobile']+'</option>';
-			$('#selBookingList').append(str);
-		});
-	},'json');
+	
 	
 })
 
-.on('click','#btnFind',function(){
+.on('click','#btnFind',function(){ // 찾기버튼 클릭 액션하는 부분
 	$.post("http://localhost:8080/app/getRoomList",{},function(result){
 		console.log(result);
 		$('#selRoom').empty();
@@ -140,13 +133,29 @@ $(document)
 			{checkin:checkin,checkout:checkout},
 			function(result){
 				if(result=='ok') {
-					location.reload();
+					location.reload();					
 				}
 			},'text');
-	
-	return false;
 	*/
 })
+
+.on('click','#btnFind',function(){ // 찾기버튼 클릭 액션하는 부분
+$.post("http://localhost:8080/app/getBookList",
+		{checkin:$('#checkin1').val(),checkout:$('#checkout1').val()},
+function(result){
+	console.log(result);
+	$('#selBookingList').empty();
+	$.each(result,function(ndx,value){ // == for(i=0;i<result.length;i++){}
+		str='<option value="'+value['bookcode']+'">객실 이름: '+value['roomname']+",  객실타입: "+value['type']+',  인원: '+
+		value['human']+"/"+value['txtNum']+',  기간: '+value['checkin']+'~'+value['checkout']+",  가격: "+value['total']+',  성함: '+value['name']+',  모바일: '+value['mobile']+'</option>';
+		$('#selBookingList').append(str);
+	});
+},'json');
+
+return false;
+	
+})
+//
 
 .on('click','#selRoom option',function(){
 	$('#roomcode').val($(this).val());
@@ -216,6 +225,32 @@ $(document)
 				},'text');
 	
 	})
+	
+	/*
+	.on('click','#btna',function(){
+	let bookcode=$('#bookcode').val();
+	let human=$('#human').val();
+	let checkin=$('#checkin').val();
+	let checkout=$('#checkout').val();
+	let total=$('#txtPrice').val();
+	let txtName=$('#txtNames').val();
+	let txtmobile=$('#txtmobile').val();
+	// validation(유효성 검사)
+	if(bookcode='' || human=='' || checkin=='' || checkout=='' || total=='' || txtName=='' || txtmobile=='') {
+		alert('누락된 값이 있습니다. 다시 입력해주세요!');
+		return false;
+	}
+		$.post('http://localhost:8080/app/selFind',
+				{bookcode:bookcode,human:human,checkin:checkin,checkout:checkout,total:total,txtName:txtName,txtmobile:txtmobile},
+				function(result){
+					if(result=='ok') {
+						location.reload();
+					}
+				},'text');
+	
+	})
+	*/
+	
 	.on('change','#checkin,#checkout',function(){
 		//총숙박비 계산
 		let checkin1=$('#checkin').val();

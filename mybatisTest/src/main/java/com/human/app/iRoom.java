@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public interface iRoom {
 	ArrayList<Roominfo> getRoomList();
 	ArrayList<Booking> getBookingList();
+	ArrayList<Book> getBookList(String checkin,String checkout);
 	ArrayList<RoomType> getRoomType();
 	void doDeleteRoom(int roomcode);
 	void doAddRoom(String roomname,int roomtype,int howmany,int howmuch);
@@ -13,4 +14,5 @@ public interface iRoom {
 	void doSignin(String txtname,String loginid, String passcode);
 	int doCheckUser(String userid,String passcode);
 	//void doAddFind(String checkin,String checkout);
+	
 }

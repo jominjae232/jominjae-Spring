@@ -12,29 +12,44 @@
 		where a.type=b.typecode order by roomcode
 	</select>
 	
-	
+	<!-- 원래 부킹리스트
 	<select id="getBookingList" resultType="com.human.app.Booking">
 		select roomname,bookcode,roomcode,txtNum,human,checkin,checkout,total,name,mobile from booking
 	</select>
+	 //원래 부킹리스트-->
 	 
+	 <select id="getBookList" resultType="com.human.app.Book">
+		<![CDATA[
+		select *
+		from booking a, room b
+		where a.roomcode = b.roomcode and
+		a.checkout > #{param1} and a.checkin < #{param2}
+		order by a.checkin
+		]]>
+	</select>
+	<select id="doFindAvailable">
+	
+	</select>
 	 
-	  <!--
+	<!--
 	<select id="doAddFind">
 		select a.bookcode,b.name,b.type,b.howmany max_howmany,a.human,a.checkin,a.checkout,a.total,a.name,a.mobile
 		from booking a, room b
 		<![CDATA[where a.checkout > #{param1} and a.checkin < #{param2}]]>
 		order by a.checkin;
 	</select>
-	  -->
+	 -->
 	
 	<select id="getBooking" resultType="com.human.app.Roominfo">
 		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch
 		from room a, roomtype b
 		where a.type=b.typecode order by roomcode
 	</select>
+	
 	<select id="getRoomType" resultType="com.human.app.RoomType">
 		select typecode,name from roomType order by typecode
 	</select>
+	
 	<delete id="doDeleteRoom">
 		delete from room where roomcode=#{param1}
 	</delete>
