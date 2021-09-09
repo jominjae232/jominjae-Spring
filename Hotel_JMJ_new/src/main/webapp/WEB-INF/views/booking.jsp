@@ -104,20 +104,7 @@
 $(document)
 .ready(function(){
 	// 디버그용 ready
-
 })
-/*
-.on('click','#btnFind',function(){ // 찾기버튼 클릭 액션하는 부분
-	$.post("http://localhost:8080/app/getRoomList",{},function(result){
-		console.log(result);
-		$('#selRoom').empty();
-		$.each(result,function(ndx,value){ // == for(i=0;i<result.length;i++){}
-			str='<option value="'+value['roomcode']+'">'+value['roomname']+','+
-				value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
-			$('#selRoom').append(str);
-		});
-	},'json');
-	*/
 	
 	// 찾기버튼 클릭 액션하는 부분 (예약 가능 객실)
 	.on('click','#btnFind',function(){ 
@@ -133,20 +120,8 @@ $(document)
 					
 				});
 			},'json');
-	//찾기버튼 클릭 액션하는 부분 (예약 가능 객실)
-	
-	/*
-	let checkin=$('#checkin1').val();
-	let checkout=$('#checkout1').val();
-	$.post('http://localhost:8080/app/addFind',
-			{checkin:checkin,checkout:checkout},
-			function(result){
-				if(result=='ok') {
-					location.reload();					
-				}
-			},'text');
-	*/
 })
+//찾기버튼 클릭 액션하는 부분 (예약 가능 객실)
 
 // 찾기버튼 클릭 액션하는 부분(예약된 객실)
 .on('click','#btnFind',function(){
