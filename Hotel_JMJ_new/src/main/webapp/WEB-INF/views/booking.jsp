@@ -210,7 +210,7 @@ return false;
 	let checkout=$('#checkout').val();
 	let total=$('#txtPrice').val();
 	let txtName=$('#txtNames').val();
-	let txtmobile=$('#txtmobile').val();
+	let txtmobile=$('#txtmobile').val(); 
 	// validation(유효성 검사)
 	if(roomname=='' || roomcode=='' || txtNum=='' || human=='' || checkin=='' || checkout=='' || total=='' || txtName=='' || txtmobile=='') {
 		alert('누락된 값이 있습니다. 다시 입력해주세요!');
