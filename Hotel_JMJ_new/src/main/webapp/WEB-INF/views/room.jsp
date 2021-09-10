@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
+<link rel="stylesheet" href="/app/resources/css/home.css">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>객실관리</title>
 </head>
-<body>
+<body class="r_body">
 
 <button onclick="location.href='booking'" style="color: blue;">예약관리</button>
 <button onclick="location.href='room'">객실관리</button>
 <button onclick="location.href='logout'" style="color: blue;">로그아웃</button>
 
-<table border="1">
+<table border="1" style="margin: 290px 570px; color: black; background-color: gray;">
 <tr>
 	<td align=center>객실 목록</td><td>
 		<select size=10 style="width: 250px;" id="selRoom">

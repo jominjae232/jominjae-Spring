@@ -124,7 +124,7 @@ public class HomeController {
 			iRoom room_type = sqlSession.getMapper(iRoom.class);
 			ArrayList<RoomType> roomtype=room.getRoomType();
 			model.addAttribute("list_type",roomtype);
-				return "booking";
+				return "/booking";
 		}
 	}
 	

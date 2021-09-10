@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link rel="stylesheet" href="/app/resources/css/home.css">
 </head>
-<body>
+
+<body class=hbody>
 <form method="POST" action="/app/check_user" id="frmLogin" style="margin: 250px 200px">
 	로긴아이디: <input type="text" name=userid><br>
 	비밀번호: <input type="password" name=passcode><br>

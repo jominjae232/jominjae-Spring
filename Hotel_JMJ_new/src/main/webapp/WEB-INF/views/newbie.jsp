@@ -3,18 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="/app/resources/css/home.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 </head>
-<body>
+<body class="hbody" style="margin: 250px 200px">
 <form method="post" action="/app/signin" id="frmSignin"> 
 실명:<input type=text name=txtname><br>
 로그인 아이디:<input type=text name="login"><br>
 비밀번호:<input type=password name=passcode ><br>
 비밀번호 확인:<input type=password name=passcode2 ><br>
 <input type=submit value="회원가입 등록">
+<a href='/app/'>홈페이지</a>
 </form>
-<input type="button" value="취소" location.href='/app'>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>

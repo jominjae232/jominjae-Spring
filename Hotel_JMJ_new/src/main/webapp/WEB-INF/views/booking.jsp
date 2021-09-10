@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-
+<link rel="stylesheet" href="/app/resources/css/home.css">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,13 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>객실관리</title>
 </head>
-<body>
+<body class="b_body">
 
 <button onclick="location.href='booking'" >예약관리</button>
 <button onclick="location.href='room'" style="color: blue;">객실관리</button>
 <button onclick="location.href='logout'" style="color: blue;">로그아웃</button>
 
-<table border="1">
+<table border="1" style="margin: 290px 400px; color: black; background-color: gray;">
 <tr>
 	
 
@@ -47,9 +47,15 @@
 			<td align="right">객실종류</td>
 				<td>
 					<select size="1" style="width: 120px" id=selType>
+					<option value="1">suite Room</option>
+					<option value="2">Family Room</option>
+					<option value="3">Double Room</option>
+					<option value="4">Single Room</option>
+					<!--
 						<c:forEach items="${list_type}" var="roomtype">
 							<option value="${roomtype.typecode}">${roomtype.name}</option>
 						</c:forEach>
+						  -->
 					</select>
 				</td>
 			</tr>
@@ -57,7 +63,7 @@
 				<td align=right>최대인원</td><td><input type=number id=txtNum min=1></td>
 			</tr>
 			<tr>
-				<td align=right>예약인원</td><td><input type=number id=human min=1>명</td>
+				<td align=right>예약인원</td><td><input type=number id=human min=1></td>
 			</tr>
 			<tr>
 				<td align=right>예약기간</td><td><input type=date id=checkin>~<tr>
@@ -65,7 +71,7 @@
 			</tr></td>
 			</tr>
 			<tr>
-				<td align=right>숙박비 총액</td><td><input type=number id=txtPrice min=1>원</td>
+				<td align=right>총액</td><td><input type=number id=txtPrice min=1></td>
 			</tr>
 			<tr>
 				<td align=right>예약자명</td><td><input type=text id=txtNames></td>
