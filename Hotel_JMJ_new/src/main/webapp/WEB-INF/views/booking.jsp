@@ -215,7 +215,7 @@ return false;
 	if(roomname=='' || roomcode=='' || txtNum=='' || human=='' || checkin=='' || checkout=='' || total=='' || txtName=='' || txtmobile=='') {
 		alert('누락된 값이 있습니다. 다시 입력해주세요!');
 		return false;
-	} 
+	}
 	let bookcode=$('#bookcode').val();
 	if(bookcode==''){
 		$.post('http://localhost:8080/app/addbooking',
