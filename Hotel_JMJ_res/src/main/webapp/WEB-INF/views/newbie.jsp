@@ -10,7 +10,7 @@
 <body class="hbody" style="margin: 270px 250px"> 
 <form method="post" action="/app/signin" id="frmSignin"> 
 실명:<input type=text name=txtname><br>
-로그인 아이디:<input type=text name="login"><br>
+아이디:<input type=text name="login"><br>
 비밀번호:<input type=password name=passcode ><br>
 비밀번호 확인:<input type=password name=passcode2 ><br>
 <input type=submit value="회원가입 등록">

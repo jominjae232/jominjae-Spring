@@ -9,8 +9,8 @@
 </head>
 
 <body class=hbody>
-<form method="POST" action="/app/check_user" id="frmLogin" style="margin: 270px 260px">
-	로긴아이디: <input type="text" name=userid><br>
+<form method="POST" action="/app/check_user" id="frmLogin" style="margin: 300px 280px">
+	아이디: <input type="text" name=userid><br>
 	비밀번호: <input type="password" name=passcode><br>
 	<input type=submit value="로그인">
 	<input type="reset" value="취소">
