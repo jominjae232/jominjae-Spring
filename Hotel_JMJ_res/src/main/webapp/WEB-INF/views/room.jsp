@@ -17,7 +17,7 @@
 <button onclick="location.href='room'">객실관리</button>
 <button onclick="location.href='logout'" style="color: blue;">로그아웃</button>
 
-<table border="1" style="margin: 290px 570px; color: black; background-color: gray;">
+<table border="1" style="margin: 230px 360px; color: black; background-color: gray;">
 <tr>
 	<td align=center>객실 목록</td><td>
 		<select size=10 style="width: 250px;" id="selRoom">

@@ -1,22 +1,22 @@
 @charset "UTF-8";
 .hbody{
-    background-image: url(../image/home.jpg);
+    background-image: url(../image/home3.jpg);
     background-repeat: no-repeat;
     background-size:cover;
-    position: absolute;
-    
+    height: auto;
+    width: auto;
 }
 .b_body{
     background-image: url(../image/booking.jpg);
     background-repeat: no-repeat;
     background-size:cover;
-    position: absolute;
-    
+    height: auto;
+    width: auto;
 }
 .r_body{
     background-image: url(../image/room.jpg);
     background-repeat: no-repeat;
     background-size:cover;
-    position: absolute;
-    
+    height: auto;
+    width: auto;
 }

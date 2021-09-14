@@ -17,7 +17,7 @@
 <button onclick="location.href='room'" style="color: blue;">객실관리</button>
 <button onclick="location.href='logout'" style="color: blue;">로그아웃</button>
 
-<table border="1" style="margin: 290px 400px; color: black; background-color: gray;">
+<table border="1" style="color: black; background-color: gray;">
 <tr>
 	
 
