@@ -9,7 +9,7 @@
 </head>
 
 <body class=hbody>
-<form method="POST" action="/app/check_user" id="frmLogin" style="margin: 300px 280px">
+<form method="POST" action="/app/check_user" id="frmLogin" style="margin: 330px 300px">
 	아이디: <input type="text" name=userid><br>
 	비밀번호: <input type="password" name=passcode><br>
 	<input type=submit value="로그인">
