@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
-<body class="hbody" style="margin: 270px 250px">
+<body class="hbody" style="margin: 270px 250px"> 
 <form method="post" action="/app/signin" id="frmSignin"> 
 실명:<input type=text name=txtname><br>
 로그인 아이디:<input type=text name="login"><br>
