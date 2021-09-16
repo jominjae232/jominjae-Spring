@@ -13,11 +13,11 @@
 </head>
 <body class="r_body">
 
-<button onclick="location.href='booking'" style="color: blue;">예약관리</button>
-<button onclick="location.href='room'">객실관리</button>
-<button onclick="location.href='logout'" style="color: blue;">로그아웃</button>
+<button onclick="location.href='booking'" style="color: blue; padding: 7px;">예약관리</button>
+<button onclick="location.href='room'" style="padding: 7px;">객실관리</button>
+<button onclick="location.href='logout'" style="color: blue; padding: 7px;">로그아웃</button>
 
-<table border="1" style="margin: 280px 280px; color: black; background-color: gray;">
+<table border="1" style="margin: 180px 580px; color: black; background-color: gray; height: 500px; width: 700px;">
 <tr>
 	<td align=center>객실 목록</td><td>
 		<select size=10 style="width: 250px;" id="selRoom">
@@ -35,7 +35,7 @@
 			<td><input type=text id=txtName><input type=hidden id=roomcode></td>
 		</tr>
 		<tr>
-			<td align="right">타입</td>
+			<td align="right">객실크기</td> 
 				<td>
 					<select size="5" style="width: 120px" id=selType>
 						<c:forEach items="${list_type}" var="type">
@@ -52,9 +52,9 @@
 			</tr>
 			<tr>
 				<td colspan=2 align=center>
-					<input type=button value='등록' id=btnAdd>
-					<input type=button value='삭제' id=btnDelete>
-					<input type=button value='취소' id=btnEmpty>
+					<input type=button value='등록' id=btnAdd style="padding: 7px; color: blue;">
+					<input type=button value='삭제' id=btnDelete style="padding: 7px; color: red;">
+					<input type=button value='취소' id=btnEmpty style="padding: 7px;">
 				</td>
 			</tr>
 			</table>

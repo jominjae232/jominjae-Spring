@@ -13,11 +13,11 @@
 </head>
 <body class="b_body">
 
-<button onclick="location.href='booking'" >예약관리</button>
-<button onclick="location.href='room'" style="color: blue;">객실관리</button>
-<button onclick="location.href='logout'" style="color: blue;">로그아웃</button>
+<button onclick="location.href='booking'" style="padding: 7px;">예약관리</button>
+<button onclick="location.href='room'" style="color: blue; padding: 7px;">객실관리</button>
+<button onclick="location.href='logout'" style="color: blue; padding: 7px;">로그아웃</button>
 
-<table border="1" style="margin: 190px 95px; color: black; background-color: gray;">
+<table border="1" style="margin: 20px 445px; color: black; background-color: #FF9E7D; width: 1100px; height: 800px;">
 <tr>
 	
 
@@ -59,7 +59,7 @@
 					</select>
 				</td>
 			</tr>
-			<tr>
+			<tr style="width: 120px;">
 				<td align=right>최대인원</td><td><input type=number id=txtNum min=1></td>
 			</tr>
 			<tr>
@@ -81,9 +81,9 @@
 			</tr>
 			<tr>
 				<td colspan=2 align=center>
-					<input type=button value='등록' id=btnAdd>
-					<input type=button value='삭제' id=btnDelete>
-					<input type=button value='취소' id=btnEmpty>
+					<input type=button value='등록' id=btnAdd style="padding: 7px; color: blue;">
+					<input type=button value='삭제' id=btnDelete style="padding: 7px; color: red;">
+					<input type=button value='취소' id=btnEmpty style="padding: 7px;">
 					</td>
 			</tr>
 			</table>

@@ -7,14 +7,13 @@
 <title>로그인</title>
 <link rel="stylesheet" href="/app/resources/css/home.css">
 </head>
-
 <body class=hbody>
-<form method="POST" action="/app/check_user" id="frmLogin" style="margin: 330px 300px">
-	아이디: <input type="text" name=userid><br>
-	비밀번호: <input type="password" name=passcode><br>
-	<input type=submit value="로그인">
-	<input type="reset" value="취소">
-	<a href='/app/newbie'>회원가입</a>
+<form method="POST" action="/app/check_user" id="frmLogin" style="margin: 350px 730px">
+	아이디: <input type="text" name=userid style="font-size: 18px;"><br>
+	비밀번호: <input type="password" name=passcode style="font-size: 18px;"><br>
+	<input type=submit value="로그인" style="color: blue; padding: 7px;">
+	<input type="reset" value="취소" style="color: red; padding: 7px;">
+	<a href='/app/newbie' style="font-size: 20px;">회원가입</a>
 </form>
 </body>
 <script src='https:code.jquery.com/jQuery-3.5.0.js'></script>
