@@ -35,7 +35,7 @@
 			<td><input type=text id=txtName><input type=hidden id=roomcode></td>
 		</tr>
 		<tr>
-			<td align="right">객실크기</td> 
+			<td align="right">객실크기</td>
 				<td>
 					<select size="5" style="width: 120px" id=selType>
 						<c:forEach items="${list_type}" var="type">
