@@ -8,14 +8,19 @@
 <title>회원가입</title>
 </head>
 
-<body class="hbody" style="margin: 350px 730px"> 
-<form method="post" action="/app/signin" id="frmSignin"> 
-호텔 이름:<input type=text name=txtname style="font-size: 18px;"><br>
-아이디:<input type=text name="login" style="font-size: 18px;"><br>
-비밀번호:<input type=password name=passcode style="font-size: 18px;"><br>
-비밀번호 확인:<input type=password name=passcode2 style="font-size: 18px;"><br>
-<input type=submit value="회원가입 등록" style="color: blue; padding: 7px;">
-<a href='/app/' style="font-size: 20px;">취소</a>
+<body class="hbody" style="margin: 280px 800px"> 
+<form method="post" action="/app/signin" id="frmSignin">
+<table border="0" style="width: 300px; height: 400px; background-color: LightYellow; border-radius: 30px;">
+<td style="position: absolute; top:295px;left: 895px; font-size: 24px;">회원가입</td>
+	<td>
+호텔 이름:<input type=text name=txtname style="font-size: 23px;"><br>
+아이디:<input type=text name="login" style="font-size: 23px;"><br>
+비밀번호:<input type=password name=passcode style="font-size: 23px;"><br>
+비밀번호 확인:<input type=password name=passcode2 style="font-size: 23px;"><br><br>
+<input type=submit value="회원가입" style="color: blue; padding: 8px; border-radius: 10px;">
+<a href='/app/' style="font-size: 20px; color: #957745	; text-decoration:none">취소</a>
+</td>
+</table>
 </form>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
@@ -41,5 +46,6 @@ $(document)
   alert('회원가입 성공!');
   return true;
 });
+
 </script>
 </html>

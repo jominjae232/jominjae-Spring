@@ -13,44 +13,42 @@
 </head>
 <body class="b_body">
 
-<button onclick="location.href='booking'" style="padding: 7px;">예약관리</button>
-<button onclick="location.href='room'" style="color: blue; padding: 7px;">객실관리</button>
-<button onclick="location.href='logout'" style="color: blue; padding: 7px;">로그아웃</button>
-
+<button onclick="location.href='booking'" style="padding: 7px; border-radius: 20px;">예약관리</button>
+<button onclick="location.href='room'" style="color: blue; padding: 7px; border-radius: 20px;">객실관리</button>
+<button onclick="location.href='logout'" style="color: blue; padding: 7px; border-radius: 20px;">로그아웃</button>
+<!-- 
 <table border="1" style="margin: 20px 445px; color: black; background-color: #FF9E7D; width: 1100px; height: 800px;">
 <tr>
-	
-
-	
+ -->
+ 
+<table border="0;" style="position:absolute; top: 204px; left: 100px; background-color: LemonChiffon; border-radius: 10px; width: 390px;">
 	<td align=center>예약가능객실<br><br><br>예약일자
-	<br><input type="date" id="checkin1">~<br><input type=date id=checkout1><br>
-	<input type=button id=btnFind value="조회">
+	<br><input type="date" id="checkin1" style="height: 27px; width: 200px; font-size: 14px; border-radius: 9px;"><br>~<br><input type=date id=checkout1 style="border-radius: 9px; font-size: 14px; height: 27px; width: 200px;"><br>
+	<br><input type=button id=btnFind value="조회" style="border-radius: 10px; width: 90px; height: 27px;">
 	</td>
-	<td>
-		<select size=10 style="width: 250px;" id="selRoom">
+	</table>
+		<select size=18 style="width: 390px; position: absolute; top: 417px; left: 100px;" id="selRoom">
 		<!--  
 				<c:forEach items="${list}" var="room">
 					<option value='${room.roomcode}'>${room.roomname},${room.typename},${room.howmany},${room.howmuch}</option>
 				</c:forEach>
 		-->
 		</select>
-	</td>
+		
 	
-	
-	<td>
-		<table style="height: 70px;">
+		<table border="0" style="height: 600px; width: 400px; position:absolute; top: 170px; left:800px; border-radius: 40px; background-color: PaleTurquoise;">
 		<tr>
 			<td align=right>객실명</td>
-			<td><input type=text id=txtName><input type=hidden id=bookcode></td>
+			<td><input type=text id=txtName style="font-size: 18px; border-radius: 9px;"><input type=hidden id=bookcode></td>
 		</tr>
 		<tr>
 			<td align="right">객실종류</td>
 				<td>
-					<select size="1" style="width: 120px" id=selType>
-					<option value="1">suite Room</option>
-					<option value="2">Family Room</option>
-					<option value="3">Double Room</option>
-					<option value="4">Single Room</option>
+					<select size="1" style="width: 230px; height: 30px; font-size: 15px; border-radius: 9px;" id=selType>
+					<option value="1" style="font-size: 15px;">suite Room</option>
+					<option value="2" style="font-size: 15px;">Family Room</option>
+					<option value="3" style="font-size: 15px;">Double Room</option>
+					<option value="4" style="font-size: 15px;">Single Room</option>
 					<!--
 						<c:forEach items="${list_type}" var="roomtype">
 							<option value="${roomtype.typecode}">${roomtype.name}</option>
@@ -60,38 +58,40 @@
 				</td>
 			</tr>
 			<tr style="width: 120px;">
-				<td align=right>최대인원</td><td><input type=number id=txtNum min=1></td>
+				<td align=right>최대인원</td><td><input type=number id=txtNum min=1 style="font-size: 18px; border-radius: 9px;"></td>
 			</tr>
 			<tr>
-				<td align=right>예약인원</td><td><input type=number id=human min=1></td>
+				<td align=right>예약인원</td><td><input type=number id=human min=1 style="font-size: 18px; border-radius: 9px;"></td>
 			</tr>
 			<tr>
-				<td align=right>예약기간</td><td><input type=date id=checkin>~<tr>
-				<td align=right></td><td><input type=date id=checkout></td>
+				<td align=right>예약기간</td><td><input type=date id=checkin style="width: 227px; border-radius: 10px; font-size: 14px; height: 28px;">~<tr>
+				<td align=right></td><td><input type=date id=checkout style="width: 227px; border-radius: 10px; font-size: 14px; height: 28px;"></td>
 			</tr></td>
 			</tr>
 			<tr>
-				<td align=right>총액</td><td><input type=number id=txtPrice min=1></td>
+				<td align=right>총액</td><td><input type=number id=txtPrice min=1 style="font-size: 18px; border-radius: 10px;"></td>
 			</tr>
 			<tr>
-				<td align=right>예약자명</td><td><input type=text id=txtNames></td>
+				<td align=right>예약자명</td><td><input type=text id=txtNames style="font-size: 18px; border-radius: 10px;"></td>
 			</tr>
 			<tr>
-				<td align=right>모바일</td><td><input type=text id=txtmobile></td>
+				<td align=right>모바일</td><td><input type=text id=txtmobile style="font-size: 18px; border-radius: 10px;"></td>
 			</tr>
 			<tr>
 				<td colspan=2 align=center>
-					<input type=button value='등록' id=btnAdd style="padding: 7px; color: blue;">
-					<input type=button value='삭제' id=btnDelete style="padding: 7px; color: red;">
-					<input type=button value='취소' id=btnEmpty style="padding: 7px;">
-					</td>
+					<input type=button value='등록' id=btnAdd style="padding: 11px; color: blue; border-radius: 10px;">
+					<input type=button value='삭제' id=btnDelete style="padding: 11px; color: red; border-radius: 10px;">
+					<input type=button value='취소' id=btnEmpty style="padding: 11px; border-radius: 10px;">
+				</td>
 			</tr>
 			</table>
-			</td>
+			
+			<table border="0" style="position:absolute; top: 240px; left:1450px; background-color: PeachPuff; width: 390px; height: 50px; border-radius: 10px;">
 			<td align=center>예약된 객실</td>
-		<td>
+			</table>
 		
-		<select size=20 style="width: 300px; overflow-x: scroll;" id="selBookingList">
+		
+		<select size=25 style="position:absolute; top: 290px; left:1450px; width: 390px; overflow-x: scroll;" id="selBookingList">
 		
 		<!--
 			<c:forEach items="${list}" var="booking">
@@ -99,7 +99,6 @@
 			</c:forEach>
 		-->
 		</select>
-	</td>
 	</tr>
 </table>
 </body>
@@ -165,7 +164,7 @@ return false;
 })
 
 
-//예약된 객실 클릭시 selBookingList에 있는 값을 왼쪽의 테이블에 입력 코드
+/* 리스트를 클릭할 경우, 가운데 입력칸에 값이 채워지는 코드입니다. */
 .on('click','#selBookingList option',function(){
 	$('#bookcode').val($(this).val());
 	let str_book=$(this).text();
@@ -182,7 +181,7 @@ return false;
 	$('#txtmobile').val($.trim(ar[8]));
 	return false;
 })
-
+/* 리스트를 클릭할 경우, 가운데 입력칸에 값이 채워지는 코드입니다. */
 
 .on('click','#btnEmpty',function(){
 	$('#txtName,#bookcode,#selType,#human,#txtNum,#checkin,#checkout,#txtPrice,#txtNames,#txtmobile').val('');
@@ -194,7 +193,7 @@ return false;
 			function(result){
 		console.log(result);
 		if(result=="ok") {
-			$('#btnEmpty').trigger('click'); //입력란 비우기
+			$('#btnEmpty').trigger('click'); //입력란 데이터 비우기 위한 코드입니다.
 			$('#selBookingList option:selected').remove();
 		}
 	},'text');

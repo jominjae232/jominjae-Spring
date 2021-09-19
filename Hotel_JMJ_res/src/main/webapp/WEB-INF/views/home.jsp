@@ -8,12 +8,17 @@
 <link rel="stylesheet" href="/app/resources/css/home.css">
 </head>
 <body class=hbody>
-<form method="POST" action="/app/check_user" id="frmLogin" style="margin: 350px 730px">
-	아이디: <input type="text" name=userid style="font-size: 18px;"><br>
-	비밀번호: <input type="password" name=passcode style="font-size: 18px;"><br>
-	<input type=submit value="로그인" style="color: blue; padding: 7px;">
-	<input type="reset" value="취소" style="color: red; padding: 7px;">
-	<a href='/app/newbie' style="font-size: 20px;">회원가입</a>
+<form method="POST" action="/app/check_user" id="frmLogin" style="margin: 320px 780px" class="login">
+<table border="0" style="width: 280px; height: 270px; background-color: LightYellow; border-radius: 40px;">
+<td style="position: absolute; top:330px;left: 895px; font-size: 24px;">LOGIN</td>
+	<td>
+	아이디: <input type="text" name=userid style="font-size: 23px;"><br>
+	비밀번호: <input type="password" name=passcode style="font-size: 23px;"><br><br>
+	<input type=submit value="로그인" style="color: blue; padding: 8px; border-radius: 10px;">
+	<input type="reset" value="취소" style="color: red; padding: 8px; border-radius: 10px;">
+	<a href='/app/newbie' style="font-size: 20px; color: #957745; text-decoration:none">회원가입</a>
+	</td>
+</table>
 </form>
 </body>
 <script src='https:code.jquery.com/jQuery-3.5.0.js'></script>
@@ -27,7 +32,7 @@ $(document)
 	$('input[name=passcode]').val(pstr);
 	console.log(pstr);
 	if($('input[name=userid]').val()=='') {
-		alert('로긴아이디를 입력하시오.');
+		alert('아이디를 입력하시오.');
 		return false;
 	}
 	if($('input[name=passcode]').val()=='') {

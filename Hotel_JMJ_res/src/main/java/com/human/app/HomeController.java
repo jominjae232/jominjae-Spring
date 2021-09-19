@@ -65,21 +65,23 @@ public class HomeController {
 	public String newbie(HttpServletRequest hsr, Model model) {
 		return "newbie";
 	}
+	
+	/* 회원가입 페이지에서 사용하게 될 HomeController입니다. */
 	@RequestMapping(value="/signin",method = RequestMethod.POST,
 			produces = "application/text; charset=utf8")
 	public String newbie(HttpServletRequest hsr) {
-		//디버깅 system.out.println이 하나또 안찎힘
-	    System.out.println("debug");
 		String txtname=hsr.getParameter("txtname");
-		System.out.println("name["+txtname+"]");
+		//System.out.println("name["+txtname+"]"); == txtname값이 잘 들어오는지 확인하는 디버그 코드 입니다.
 		String loginid=hsr.getParameter("login");
-		System.out.println("name["+loginid+"]");
+		//System.out.println("loginid["+loginid+"]"); == loginid값이 잘 들어오는지 확인하는 디버그 코드 입니다.
 		String passcode=hsr.getParameter("passcode");
-		System.out.println("name["+passcode+"]");
+		//System.out.println("passcode["+passcode+"]"); == passcode값이 잘 들어오는지 확인하는 디버그 코드 입니다.
 		iRoom room=sqlSession.getMapper(iRoom.class);
 		room.doSignin(txtname,loginid,passcode);
 		return "/home";
 	}
+	/*//회원가입 페이지에서 사용하게 될 HomeController입니다. */
+	
 	@RequestMapping("/viewinfo")
 	public String show(@RequestParam String userid, @RequestParam String passcode, Model model) {
 		model.addAttribute("login", userid);	
@@ -95,6 +97,8 @@ public class HomeController {
 		model.addAttribute("m",mobile);
 		return "newinfo";
 	}
+	
+	/* home.jsp에서 사용하게 될 HomeController입니다. */
 	@RequestMapping(value="/check_user",method = RequestMethod.POST)
 	public String check_user(HttpServletRequest hsr,Model model) {
 		String userid=hsr.getParameter("userid");
@@ -112,7 +116,9 @@ public class HomeController {
 			return "home";
 		}		
 	}
+	/* //home.jsp에서 사용하게 될 HomeController입니다. */
 	
+	/* room과 roomtype을 JOIN시키는 controller */
 	@RequestMapping(value="/booking",method = RequestMethod.GET)
 	public String booking(HttpServletRequest hsr,Model model) {
 		HttpSession session=hsr.getSession();
@@ -127,6 +133,7 @@ public class HomeController {
 				return "/booking";
 		}
 	}
+	/* room과 roomtype을 JOIN시키는 controller */
 	
 	/*
 	@RequestMapping(value="booking",method = RequestMethod.GET)
@@ -174,17 +181,12 @@ public class HomeController {
 					produces="application/text; charset=utf8")
 	@ResponseBody
 	public String doFindAvailable(HttpServletRequest hsr) {
-		
 		iRoom room=sqlSession.getMapper(iRoom.class);
-		//System.out.println("aa");
 		String checkin=hsr.getParameter("checkin");
-		//System.out.println(checkin);
+		//System.out.println(checkin); == checkin 값 확인용 디버깅 코드
 		String checkout=hsr.getParameter("checkout");
-		//System.out.println(checkout);
-		//System.out.println("bb");
-		
+		//System.out.println(checkout); == checkout 값 확인용 디버깅 코드
 		ArrayList<Roominfo> roominfo=room.doFindAvailable(checkin,checkout);
-		//System.out.println("cc");
 		// 찾아진 데이터로 JSONArray만들기
 		JSONArray ja = new JSONArray(); //JSONArray ja 생성
 		for(int i=0; i<roominfo.size();i++) { //roominfo 크기만큼 반복
@@ -206,20 +208,16 @@ public class HomeController {
 			//System.out.println(roominfo.get(i).getCheckout()+"getCheckou");
 			ja.add(jo); // JSONArray ja에 JSONObject jo에 있는 데이터 값 입력
 		}
-		// System.out.println(ja.toString()); == debug용 코드 
 		return ja.toString(); // JSON ja의 데이터를 문자열로 바꿈 
 	}
 	/* //조회버튼 반응 예약 가능 객실 컨트롤러 부분 */
 	
-	
 	/* 조회버튼 반응 예약된 객실 컨트롤러 부분 */
 	@RequestMapping(value="/getBookList",method=RequestMethod.POST,
-			produces="application/text; charset=utf8")
+			produces="application/text; charset=utf8") // 한글 깨짐 방지용 코드
 	@ResponseBody
 	public String getBookingList(HttpServletRequest hsr) {
-		
 		iRoom book=sqlSession.getMapper(iRoom.class);
-		
 		String checkin=hsr.getParameter("checkin");
 		String checkout=hsr.getParameter("checkout");
 		ArrayList<Book> getBookList=book.getBookList(checkin,checkout);
@@ -227,70 +225,57 @@ public class HomeController {
 		for(int i=0; i<getBookList.size();i++) { //booking 크기만큼 반복
 			JSONObject jos = new JSONObject(); // JSONObject jo 생성
 			jos.put("roomname", getBookList.get(i).getRoomname()); // JSONObject jo에 데이터 입력
-			//System.out.println("dd");
 			//System.out.println(getBookList.get(i).getRoomname()+":Roomname");
-			
 			jos.put("bookcode", getBookList.get(i).getBookcode()); // JSONObject jo에 데이터 입력
 			//System.out.println(getBookList.get(i).getBookcode()+":Bookcode");
-			
 			jos.put("type", getBookList.get(i).getRoomtype()); // JSONObject jo에 데이터 입력
 			//System.out.println(getBookList.get(i).getRoomtype()+":getType");
-			
 			jos.put("txtNum", getBookList.get(i).getTxtNum()); // JSONObject jo에 데이터 입력
 			//System.out.println(getBookList.get(i).getTxtNum()+"getMax_howmany");
-			
 			jos.put("human", getBookList.get(i).getHuman()); // JSONObject jo에 데이터 입력
 			//System.out.println(getBookList.get(i).getHuman()+"getHuman");
-			
 			jos.put("checkin", getBookList.get(i).getCheckin()); // JSONObject jo에 데이터 입력
 			//System.out.println(getBookList.get(i).getCheckin()+"getCheckin");
-			
 			jos.put("checkout", getBookList.get(i).getCheckout()); // JSONObject jo에 데이터 입력
 			//System.out.println(getBookList.get(i).getCheckout()+"getCheckout");
-			
 			jos.put("total", getBookList.get(i).getTotal()); // JSONObject jo에 데이터 입력
 			//System.out.println(getBookList.get(i).getTotal()+"getTotal");
-			
 			jos.put("name", getBookList.get(i).getName()); // JSONObject jo에 데이터 입력
 			//System.out.println(getBookList.get(i).getName()+"getName");
-			
 			jos.put("mobile", getBookList.get(i).getMobile()); // JSONObject jo에 데이터 입력
 			//System.out.println(getBookList.get(i).getMobile()+"getMobile");
-			
 			jas.add(jos); // JSONArray ja에 JSONObject jo에 있는 데이터 값 입력
 		}
-		System.out.println(jas.toString());// == debug용 코드 
 		return jas.toString(); // JSON ja의 데이터를 문자열로 바꿈 
 	}
 	/* //조회버튼 반응 예약된 객실 컨트롤러 부분 */
 	
 	
 	/* JSON 사용
-	 * room.jsp화면 roomlist 출력 컨트롤러 부분
+	 * //객실관리 페이지에서 객실목록을 출력 컨트롤러 부분입니다.
 	 */
-	// produces="application/text; charset=utf8" == 한글깨짐 방지 코드 
+	// produces="application/text; charset=utf8" == 한글깨짐 방지 코드입니다.
 	@RequestMapping(value="/getRoomList",method=RequestMethod.POST,
 					produces="application/text; charset=utf8")
 	@ResponseBody
 	public String getRoomList1(HttpServletRequest hsr) {
-		//System.out.println("debugegetRoomlist"); == RoomList로 들어오는지 확인하는 디버그 코드
 		iRoom room=sqlSession.getMapper(iRoom.class);
 		ArrayList<Roominfo> roominfo=room.getRoomList();
 		// 찾아진 데이터로 JSONArray만들기
-		JSONArray ja = new JSONArray(); //JSONArray ja 생성
-		for(int i=0; i<roominfo.size();i++) { //roominfo 크기만큼 반복
-			JSONObject jo = new JSONObject(); // JSONObject jo 생성
-			jo.put("roomcode", roominfo.get(i).getRoomcode()); // JSONObject jo에 데이터 입력
-			jo.put("roomname", roominfo.get(i).getRoomname()); // JSONObject jo에 데이터 입력
-			jo.put("typename", roominfo.get(i).getTypename()); // JSONObject jo에 데이터 입력
-			jo.put("howmany", roominfo.get(i).getHowmany()); // JSONObject jo에 데이터 입력
-			jo.put("howmuch", roominfo.get(i).getHowmuch()); // JSONObject jo에 데이터 입력
+		JSONArray ja = new JSONArray(); //JSONArray ja 생성합니다.
+		for(int i=0; i<roominfo.size();i++) { //roominfo 크기만큼 반복합니다.
+			JSONObject jo = new JSONObject(); // JSONObject jo 생성합니다.
+			jo.put("roomcode", roominfo.get(i).getRoomcode()); // JSONObject jo에 데이터 입력합니다.
+			jo.put("roomname", roominfo.get(i).getRoomname()); // JSONObject jo에 데이터 입력합니다.
+			jo.put("typename", roominfo.get(i).getTypename()); // JSONObject jo에 데이터 입력합니다.
+			jo.put("howmany", roominfo.get(i).getHowmany()); // JSONObject jo에 데이터 입력합니다.
+			jo.put("howmuch", roominfo.get(i).getHowmuch()); // JSONObject jo에 데이터 입력합니다.
 			ja.add(jo); // JSONArray ja에 JSONObject jo에 있는 데이터 값 입력
 		}
-		// System.out.println(ja.toString()); == debug용 코드 
-		return ja.toString(); // JSON ja의 데이터를 문자열로 바꿈 
+		// System.out.println(ja.toString()); == 디버그용 코드 입니다. 
+		return ja.toString(); // JSON ja의 데이터를 문자열로 바꿔 반환합니다.
 	}
-	/*//room.jsp화면 roomlist 출력 컨트롤러 부분 */
+	/* //객실관리 페이지에서 객실목록을 출력 컨트롤러 부분입니다. */
 	
 	@RequestMapping(value="/deleteRoom",method=RequestMethod.POST,
 			produces="application/text; charset=utf8")
@@ -302,19 +287,21 @@ public class HomeController {
 		return "ok";
 	}
 	
-	
+	/* 예약이 완료된 객실의 데이터를 지우는 코드입니다. */
 	@RequestMapping(value="/deleteBooking",method=RequestMethod.POST,
 			produces="application/text; charset=utf8")
 	@ResponseBody
 	public String deleteBooking(HttpServletRequest hsr) {
 		int bookcode=Integer.parseInt(hsr.getParameter("bookcode"));
-		System.out.println(bookcode);
+		// System.out.println(bookcode); == 데이터 값이 잘 들어왔나 확인하는 코드
 		iRoom room=sqlSession.getMapper(iRoom.class);
 		room.doDeleteBooking(bookcode);
 		return "ok";
 	}
+	/* //예약이 완료된 객실의 데이터를 지우는 코드입니다 */
 	
 	
+	/* 예약관리 페이지에서 객실을 추가 코드입니다. */
 	@RequestMapping(value="/addRoom",method=RequestMethod.POST,
 			produces="application/text; charset=utf8")
 	@ResponseBody
@@ -327,48 +314,36 @@ public class HomeController {
 		room.doAddRoom(rname,rtype,howmany,howmuch);
 		return "ok";
 	}
-		
+	/* //예약관리 페이지에서 객실을 추가 코드입니다. */
+	
 	@RequestMapping(value="/addbooking",method=RequestMethod.POST,
 			produces="application/text; charset=utf8")
 	@ResponseBody
 	public String addbooking(HttpServletRequest hsr) {
-		System.out.println("addbooking");
-		//int bookcode=Integer.parseInt(hsr.getParameter("bookcode"));
-		//System.out.println(bookcode);
-		
 		String roomname=hsr.getParameter("roomname");
-		System.out.println(roomname+"객실이름");
-		
+		//System.out.println(roomname+"객실이름"); == 값을 확인하는 디버깅 코드입니다.
 		int roomcode=Integer.parseInt(hsr.getParameter("roomcode"));
-		System.out.println(roomcode+"객실타입");
-		
+		//System.out.println(roomcode+"객실타입"); == 값을 확인하는 디버깅 코드입니다.
 		int txtNum=Integer.parseInt(hsr.getParameter("txtNum"));
-		System.out.println(txtNum+"예약인원");
-		
+		//System.out.println(txtNum+"예약인원"); == 값을 확인하는 디버깅 코드입니다.
 		int human=Integer.parseInt(hsr.getParameter("human"));
-		System.out.println(human+"최대인원");
-		
+		//System.out.println(human+"최대인원"); == 값을 확인하는 디버깅 코드입니다.
 		String checkin=hsr.getParameter("checkin");
-		System.out.println(checkin+"체크인");
-		
+		//System.out.println(checkin+"체크인"); == 값을 확인하는 디버깅 코드입니다.
 		String checkout=hsr.getParameter("checkout");
-		System.out.println(checkout+"체크아웃");
-		
+		//System.out.println(checkout+"체크아웃"); == 값을 확인하는 디버깅 코드입니다.
 		int total=Integer.parseInt(hsr.getParameter("total"));
-		System.out.println(total+"가격");
-		
+		//System.out.println(total+"가격");
 		String bname=hsr.getParameter("txtName");
-		System.out.println(bname+"예약자명");
-		
+		//System.out.println(bname+"예약자명"); == 값을 확인하는 디버깅 코드입니다.
 		String bmobile=hsr.getParameter("txtmobile");
-		System.out.println(bmobile+"모바일번호");
-		
+		//System.out.println(bmobile+"모바일번호"); == 값을 확인하는 디버깅 코드입니다.
 		iRoom room=sqlSession.getMapper(iRoom.class);
-		System.out.println(roomname+","+roomcode+","+txtNum+","+human+","+checkin+","+checkout+","+total+","+bname+","+bmobile);
 		room.doAddBooking(roomname,roomcode,txtNum,human,checkin,checkout,total,bname,bmobile);
 		return "ok";
 	}
 	
+	/* 객실관리 페이지에서 이미 등록된 객실 목록을 업데이트 하는 코드입니다. */
 	@RequestMapping(value="/updateRoom",method=RequestMethod.POST,
 			produces="application/text; charset=utf8")
 	@ResponseBody
@@ -381,21 +356,21 @@ public class HomeController {
 				Integer.parseInt(hsr.getParameter("howmuch")));
 		return "ok";
 	}
+	/*//객실관리 페이지에서 이미 등록된 객실 목록을 업데이트 하는 코드입니다. */
 
+	/* 예약된 객실의 데이터 값을 업로드 하기 위한 코드입니다. */
 	@RequestMapping(value="/updatebooking",method=RequestMethod.POST,
 			produces="application/text; charset=utf8")
 	@ResponseBody
 	public String updatebooking(HttpServletRequest hsr) {
-		System.out.println("debug update booking");
 		iRoom room=sqlSession.getMapper(iRoom.class);
-		System.out.println("debug update booking11");
 		room.doUpdatebooking(Integer.parseInt(hsr.getParameter("bookcode")),
 				Integer.parseInt(hsr.getParameter("human")),
 				hsr.getParameter("txtNames"),
 				hsr.getParameter("txtmobile"));
 		return "ok";
 	}
-
+	/* //예약된 객실의 데이터 값을 업로드 하기 위한 코드입니다. */
 
 
 
