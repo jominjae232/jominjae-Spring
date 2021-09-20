@@ -19,7 +19,7 @@
 비밀번호 확인:<input type=password name=passcode2 style="font-size: 23px;"><br><br>
 <input type=submit value="회원가입" style="color: blue; padding: 8px; border-radius: 10px;">
 <a href='/app/' style="font-size: 20px; color: #957745	; text-decoration:none">취소</a>
-</td> 
+</td>
 </table>
 </form>
 </body>
