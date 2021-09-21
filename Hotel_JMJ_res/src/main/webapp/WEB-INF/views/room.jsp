@@ -25,7 +25,7 @@
 	</table>
 	
 	
-		<select size=19 style="width: 400px; position: absolute; top: 320px; left: 470px; font-size: 15px;" id="selRoom">
+		<select size=19 style="width: 400px; position: absolute; top: 320px; left: 470px; font-size: 16px;" id="selRoom">
 	
 		<!--  
 				<c:forEach items="${list}" var="room">

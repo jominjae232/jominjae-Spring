@@ -27,7 +27,7 @@
 	<br><input type=button id=btnFind value="조회" style="border-radius: 10px; width: 90px; height: 27px;">
 	</td>
 	</table>
-		<select size=18 style="width: 390px; position: absolute; top: 417px; left: 100px;" id="selRoom">
+		<select size=18 style="width: 390px; position: absolute; top: 417px; left: 100px; font-size: 16px;" id="selRoom">
 		<!--  
 				<c:forEach items="${list}" var="room">
 					<option value='${room.roomcode}'>${room.roomname},${room.typename},${room.howmany},${room.howmuch}</option>
@@ -91,7 +91,7 @@
 			</table>
 		
 		
-		<select size=25 style="position:absolute; top: 290px; left:1450px; width: 390px; overflow-x: scroll;" id="selBookingList">
+		<select size=25 style="position:absolute; top: 290px; left:1450px; width: 390px; overflow-x: scroll; font-size: 16px;" id="selBookingList">
 		
 		<!--
 			<c:forEach items="${list}" var="booking">
@@ -195,6 +195,7 @@ return false;
 		if(result=="ok") {
 			$('#btnEmpty').trigger('click'); //입력란 데이터 비우기 위한 코드입니다.
 			$('#selBookingList option:selected').remove();
+			alert("삭제되었습니다.")
 		}
 	},'text');
 	return false;
