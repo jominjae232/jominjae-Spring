@@ -107,6 +107,7 @@ $(document)
 		if(result=="ok") {
 			$('#btnEmpty').trigger('click'); //입력란 비우기
 			$('#selRoom option:selected').remove(); //room리스트에서 제거
+			alert("삭제 성공!")
 		}
 	},'text');
 	return false;
@@ -130,6 +131,7 @@ $(document)
 				function(result){
 					if(result=='ok') {
 						location.reload();
+						alert("등록 성공!");
 					}
 				},'text');
 	} else { //update
@@ -140,6 +142,7 @@ $(document)
 				function(result){
 					if(result=='ok') {
 						location.reload();
+						alert("업데이트 성공!");
 					}
 				},'text');
 			}
