@@ -15,12 +15,6 @@
 	</select>
 	<!-- 객실관리페이지에서 객실목록을 출력하는 코드입니다. -->
 	
-	<!-- 원래 부킹리스트
-	<select id="getBookingList" resultType="com.human.app.Booking">
-		select roomname,bookcode,roomcode,txtNum,human,checkin,checkout,total,name,mobile from booking
-	</select>
-	 //원래 부킹리스트-->
-	 
 	 <!-- 예약관리 페이지 중 예약된 객실 리스트를 출력할 xml코드입니다. -->
 	 <select id="getBookList" resultType="com.human.app.Book">
 		<![CDATA[
@@ -47,15 +41,6 @@
 	</select>
 	 <!-- // 예약관리 페이지 중 예약가능 객실 리스트를 출력할 xml 코드입니다. -->
 	 
-	<!--
-	<select id="doAddFind">
-		select a.bookcode,b.name,b.type,b.howmany max_howmany,a.human,a.checkin,a.checkout,a.total,a.name,a.mobile
-		from booking a, room b
-		<![CDATA[where a.checkout > #{param1} and a.checkin < #{param2}]]>
-		order by a.checkin;
-	</select>
-	 -->
-	
 	<select id="getBooking" resultType="com.human.app.Roominfo">
 		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch
 		from room a, roomtype b
@@ -75,12 +60,6 @@
 		delete from booking where bookcode=#{param1}
 	</delete>
 	<!-- //예약이 완료된 객실의 데이터를 지우는 코드입니다. -->
-	
-	<!--
-	<delete id="doDeleteBook">
-		delete from booking where bookcode=#{param1}
-	</delete>
-	-->
 	
 	<!-- 객실목록 리스트에 객실을 추가하는 코드입니다. -->
 	<insert id='doAddRoom'>
