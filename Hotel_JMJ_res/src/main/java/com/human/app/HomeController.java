@@ -48,23 +48,33 @@ public class HomeController {
 		
 		return "home";
 	}
+	/* 기본을 home.jsp(홈페이지)로 이동 */
 	@RequestMapping("/")
 	public String login(HttpServletRequest hsr, Model model) {
 		return "home";
-		
 	}
+	/* // 기본을 home.jsp(홈페이지)로 이동 */
+	
+	/* home을 입력하여 검색할 경우, home.jsp(홈페이지)로 이동 */
 	@RequestMapping("/home")
 	public String login3(HttpServletRequest hsr,Model model) {
 		return "hoom";
 	}
+	/* // home을 입력하여 검색할 경우, home.jsp(홈페이지)로 이동 */
+	
+	/* login을 입력하여 검색할 경우, login.jsp(로그인페이지)로 이동. 사용하지 않는 코드입니다. */
 	@RequestMapping("/login")
 	public String login1(HttpServletRequest hsr, Model model) {
 		return "login";
 	}
+	/* // login을 입력하여 검색할 경우, login.jsp(로그인페이지)로 이동. 사용하지 않는 코드입니다. */
+	
+	/* newbie를 입력하여 검색할 경우, newbie.jsp(회원가입페이지)로 이동. */
 	@RequestMapping("/newbie")
 	public String newbie(HttpServletRequest hsr, Model model) {
 		return "newbie";
 	}
+	/* // newbie를 입력하여 검색할 경우, newbie.jsp(회원가입페이지)로 이동. */
 	
 	/* 회원가입 페이지에서 사용하게 될 HomeController입니다. */
 	@RequestMapping(value="/signin",method = RequestMethod.POST,
@@ -82,12 +92,16 @@ public class HomeController {
 	}
 	/*//회원가입 페이지에서 사용하게 될 HomeController입니다. */
 	
+	/* 로그인시, 사용하게 될 HomeController입니다. */
 	@RequestMapping("/viewinfo")
 	public String show(@RequestParam String userid, @RequestParam String passcode, Model model) {
 		model.addAttribute("login", userid);	
 		model.addAttribute("newbie", passcode);
 		return "viewinfo";
 	}
+	/* // 로그인시, 사용하게 될 HomeController입니다. */
+	
+	/* 회원가입시, 사용하게 될 HomeController입니다. */
 	@RequestMapping("/newinfo")
 	public String sss(@RequestParam String name,@RequestParam String id, @RequestParam String pass,
 					@RequestParam String mobile, Model model) {
@@ -97,6 +111,7 @@ public class HomeController {
 		model.addAttribute("m",mobile);
 		return "newinfo";
 	}
+	/* // 회원가입시, 사용하게 될 HomeController입니다. */
 	
 	/* home.jsp에서 사용하게 될 HomeController입니다. */
 	@RequestMapping(value="/check_user",method = RequestMethod.POST)
@@ -133,9 +148,9 @@ public class HomeController {
 				return "/booking";
 		}
 	}
-	/* room과 roomtype을 JOIN시키는 controller */
+	/* // room과 roomtype을 JOIN시키는 controller */
 	
-	/*
+	/* // 원래 사용하던 booking(예약) 코드입니다.
 	@RequestMapping(value="booking",method = RequestMethod.GET)
 	public String booking(HttpServletRequest hsr,Model model) {
 		HttpSession session=hsr.getSession(true);
@@ -149,6 +164,7 @@ public class HomeController {
 	}
 	*/
 	
+	/* room을 입력하여 검색할 경우, room.jsp(객실관리)로 이동. 로그인이 안 되어 있을 경우, 이동 불가. */
 	@RequestMapping("/room")
 	public String room(HttpServletRequest hsr,Model model) {
 		HttpSession session=hsr.getSession();
@@ -167,13 +183,16 @@ public class HomeController {
 		model.addAttribute("list_type",roomtype);
 		return "room";
 	}
+	/* //room을 입력하여 검색할 경우, room.jsp(객실관리)로 이동. 로그인이 안 되어 있을 경우, 이동 불가. */
 	
+	/* logout시, 사용 할 HomeController입니다. */
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest hsr) {
 		HttpSession session=hsr.getSession();
 		session.invalidate();
 		return "redirect:/";
 }
+	/* //logout시, 사용 할 HomeController입니다. */
 	
 	/* JSON 사용, 조회버튼 반응 예약 가능 객실 컨트롤러 부분*/
 	// produces="application/text; charset=utf8" == 한글깨짐 방지 코드 
